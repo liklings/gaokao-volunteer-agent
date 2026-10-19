@@ -1,0 +1,22 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+sqlalchemy>=2.0.0
+psycopg[binary]>=3.2.0
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+python-dotenv>=1.0.0
+alembic>=1.13.0
+httpx>=0.27.0
+pyjwt>=2.8.0
+bcrypt>=4.1.0
+email-validator>=2.0.0
+mcp>=1.2.0,<2.0.0  # mcp 2.x 把 FastMCP 从 mcp.server.fastmcp 挪到了 mcp.server.mcpserver（改名 MCPServer），
+                   # 是破坏性 API 变更，这里的代码是照着 v1 API 写的、也是在 v1 上验证过的，先锁定大版本，
+                   # 不跟着自动升到 v2——真要升级到 v2，需要照着官方迁移指南把 app/mcp_servers/policy_search_server.py
+                   # 和 app/services/mcp_client.py 一起改，属于单独的任务，不能只改依赖版本号了事。
+pandas>=2.0.0      # 一分一段表/历年位次/招生计划这几个真实数据导入脚本用来读 Excel
+openpyxl>=3.1.0    # pandas 读写 .xlsx 需要的引擎
+pgvector>=0.3.0    # policy_chunks 表的向量列（SQLAlchemy Vector 类型），另外还需要
+                   # 数据库本身装了 pgvector 扩展（见 README"政策向量检索"一节的安装步骤）
+python-docx>=1.1.0 # 读取 .docx 政策文档正文
+pypdf>=4.0.0       # 读取 .pdf 政策文档正文（按页提取，方便引用标注到具体页码）

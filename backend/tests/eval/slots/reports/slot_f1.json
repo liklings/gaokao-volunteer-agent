@@ -1,0 +1,182 @@
+{
+  "n_cases": 200,
+  "n_exact": 199,
+  "pass_line": 0.98,
+  "micro": {
+    "precision": 0.9985994397759104,
+    "recall": 1.0,
+    "f1": 0.9992992291520673,
+    "tp": 713,
+    "fp": 1,
+    "fn": 0
+  },
+  "followup": {
+    "ok": 83,
+    "total": 83
+  },
+  "by_slot": {
+    "province": {
+      "tp": 126,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "track": {
+      "tp": 123,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "subjects": {
+      "tp": 120,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "score": {
+      "tp": 78,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "rank": {
+      "tp": 51,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "major_keyword": {
+      "tp": 122,
+      "fp": 1,
+      "fn": 0,
+      "f1": 0.9959183673469388
+    },
+    "city_pref": {
+      "tp": 22,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "budget_max": {
+      "tp": 23,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "home_province_only": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "accept_sino_foreign": {
+      "tp": 19,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "accept_special_program": {
+      "tp": 19,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    }
+  },
+  "by_tag": {
+    "full": {
+      "tp": 60,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "numbers": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "partial": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "optional": {
+      "tp": 23,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "multi_turn": {
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "correction": {
+      "tp": 24,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "hard": {
+      "tp": 64,
+      "fp": 1,
+      "fn": 0,
+      "f1": 0.9922480620155039
+    },
+    "gen_full": {
+      "tp": 174,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "gen_infer_track": {
+      "tp": 64,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "gen_multi": {
+      "tp": 150,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "gen_correction": {
+      "tp": 110,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "gen_optional": {
+      "tp": 22,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "gen_negative": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "f1": null
+    }
+  },
+  "failures": [
+    {
+      "id": "hand-13",
+      "tag": "hard",
+      "exact": false,
+      "error": null,
+      "followup_failed": [],
+      "errors": [
+        {
+          "slot": "major_keyword",
+          "expected": null,
+          "got": "不限"
+        }
+      ]
+    }
+  ],
+  "followup_failed": []
+}

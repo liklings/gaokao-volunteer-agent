@@ -1,0 +1,6 @@
+# OCR 是可选依赖：只有要导入扫描版 PDF 时才需要（见 app/services/ocr.py）。
+# 用法：pip install -r requirements-ocr.txt
+pymupdf>=1.24            # 把 PDF 页面渲染成图片，不依赖系统里的 poppler
+paddlepaddle>=3.0        # PaddleOCR 的推理框架（ocr_engine=paddleocr）
+paddleocr>=3.0           # 首次运行会联网下载检测/识别模型
+rapidocr-onnxruntime     # 轻量备选（ocr_engine=rapidocr），模型自带、不需联网下载

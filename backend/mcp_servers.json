@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "name": "policy_search",
+      "enabled": true,
+      "command": "python",
+      "args": ["-m", "app.mcp_servers.policy_search_server"],
+      "env": {},
+      "_comment": "默认接的是本仓库自带的离线参考实现（app/mcp_servers/policy_search_server.py），见该文件顶部注释说明为什么默认离线。要换成真实联网搜索 server，把 command/args/env 改成那个 server 的启动方式即可（比如某个提供 MCP 协议的搜索服务 npx 包），env 的值支持 ${VAR_NAME} 语法，会在启动时从当前进程的环境变量里插值——API Key 这类密钥写 ${SEARCH_API_KEY} 这种形式，不要把明文密钥直接写进这个文件。"
+    }
+  ]
+}

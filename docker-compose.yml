@@ -1,0 +1,50 @@
+services:
+  db:
+    # 带 pgvector 扩展的 Postgres 镜像（政策向量检索需要；普通 postgres:16 没有这个扩展，迁移会失败）
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gaokao_agent
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      # 把 data/ 只读挂进容器，方便用 psql -f /data/xxx.sql 导入示例数据
+      - ./data:/data:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/gaokao_agent
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash-lite}
+      # 必填——没有默认值，故意的：不能让所有用 docker compose 起过这个项目的人
+      # 共用同一个硬编码密钥。启动前在宿主机 shell 里 export JWT_SECRET=...，
+      # 或者在项目根目录建一个 .env 文件（docker compose 会自动读取），
+      # 内容形如 JWT_SECRET=<用 python -c "import secrets;print(secrets.token_urlsafe(32))" 生成的值>
+      JWT_SECRET: ${JWT_SECRET:?"必须设置 JWT_SECRET 环境变量，见 backend/.env.example 说明"}
+      ENVIRONMENT: docker
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

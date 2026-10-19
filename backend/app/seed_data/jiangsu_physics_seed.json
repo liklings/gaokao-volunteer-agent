@@ -1,0 +1,621 @@
+{
+  "_meta": {
+    "province": "江苏",
+    "track": "物理类",
+    "target_year": 2026,
+    "generated_from": "jiangsu_luqu.xlsx",
+    "generated_at": "2026-07-29"
+  },
+  "schools": [
+    {
+      "id": "seu",
+      "name": "东南大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "985",
+        "211",
+        "双一流",
+        "强基计划"
+      ],
+      "admission_groups": [
+        {
+          "id": "seu-cs-04",
+          "code": "1102",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "人工智能",
+            "信息"
+          ],
+          "tuition": 6380,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 45,
+              "min_score": 658,
+              "min_rank": 2414,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 40,
+              "min_score": 660,
+              "min_rank": 2475,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 40,
+              "min_score": 660,
+              "min_rank": 2754,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nuist",
+      "name": "南京邮电大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "双一流",
+        "本科批"
+      ],
+      "admission_groups": [
+        {
+          "id": "nuist-cs-03",
+          "code": "1111",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "通信",
+            "信息"
+          ],
+          "tuition": 6380,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 20,
+              "min_score": 638,
+              "min_rank": 8837,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 30,
+              "min_score": 635,
+              "min_rank": 9940,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 20,
+              "min_score": 635,
+              "min_rank": 11117,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nju",
+      "name": "南京大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "985",
+        "211",
+        "双一流"
+      ],
+      "admission_groups": [
+        {
+          "id": "nju-cs-11",
+          "code": "1101",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "人工智能"
+          ],
+          "tuition": 6050,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组7",
+              "plan_count": 41,
+              "min_score": 670,
+              "min_rank": 728,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组8",
+              "plan_count": 31,
+              "min_score": 674,
+              "min_rank": 727,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组9",
+              "plan_count": 31,
+              "min_score": 674,
+              "min_rank": 762,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "njust",
+      "name": "南京理工大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "211",
+        "双一流"
+      ],
+      "admission_groups": [
+        {
+          "id": "njust-cs-02",
+          "code": "1104",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "人工智能",
+            "软件"
+          ],
+          "tuition": 6380,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组3",
+              "plan_count": 25,
+              "min_score": 642,
+              "min_rank": 7102,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组3",
+              "plan_count": 60,
+              "min_score": 641,
+              "min_rank": 7633,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 58,
+              "min_score": 644,
+              "min_rank": 7265,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hhu",
+      "name": "河海大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "211",
+        "双一流"
+      ],
+      "admission_groups": [
+        {
+          "id": "hhu-cs-05",
+          "code": "3213",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "信息"
+          ],
+          "tuition": 5500,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 40,
+              "min_score": 638,
+              "min_rank": 8837,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 36,
+              "min_score": 637,
+              "min_rank": 9144,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 36,
+              "min_score": 638,
+              "min_rank": 9656,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "just",
+      "name": "江苏大学",
+      "city": "镇江",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "双一流"
+      ],
+      "admission_groups": [
+        {
+          "id": "just-cs-01",
+          "code": "3220",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "信息"
+          ],
+          "tuition": 6380,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组20",
+              "plan_count": 41,
+              "min_score": 604,
+              "min_rank": 31362,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组19",
+              "plan_count": 30,
+              "min_score": 604,
+              "min_rank": 27764,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组12",
+              "plan_count": 30,
+              "min_score": 606,
+              "min_rank": 28267,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nuaa",
+      "name": "南京航空航天大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "211",
+        "双一流"
+      ],
+      "admission_groups": [
+        {
+          "id": "nuaa-cs-03",
+          "code": "3217",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "人工智能"
+          ],
+          "tuition": 6380,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 26,
+              "min_score": 645,
+              "min_rank": 5985,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组7",
+              "plan_count": 45,
+              "min_score": 643,
+              "min_rank": 6950,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 26,
+              "min_score": 645,
+              "min_rank": 5985,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "njtech",
+      "name": "南京工业大学",
+      "city": "南京",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "本科批"
+      ],
+      "admission_groups": [
+        {
+          "id": "njtech-cs-02",
+          "code": "3231",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "信息"
+          ],
+          "tuition": 5800,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组7",
+              "plan_count": 130,
+              "min_score": 592,
+              "min_rank": 42525,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组8",
+              "plan_count": 80,
+              "min_score": 592,
+              "min_rank": 37357,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组6",
+              "plan_count": 114,
+              "min_score": 597,
+              "min_rank": 34853,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cczu",
+      "name": "常州大学",
+      "city": "常州",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "本科批"
+      ],
+      "admission_groups": [
+        {
+          "id": "cczu-cs-01",
+          "code": "3232",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件"
+          ],
+          "tuition": 5800,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组5",
+              "plan_count": 131,
+              "min_score": 573,
+              "min_rank": 63454,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组4",
+              "plan_count": 112,
+              "min_score": 570,
+              "min_rank": 58417,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组4",
+              "plan_count": 87,
+              "min_score": 571,
+              "min_rank": 56968,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suda",
+      "name": "苏州大学",
+      "city": "苏州",
+      "province": "江苏",
+      "tags": [
+        "公办",
+        "211",
+        "双一流"
+      ],
+      "admission_groups": [
+        {
+          "id": "suda-cs-04",
+          "code": "3219",
+          "track": "物理类",
+          "subjects_required": [
+            "物理",
+            "化学"
+          ],
+          "major_keywords": [
+            "计算机",
+            "软件",
+            "人工智能"
+          ],
+          "tuition": 6380,
+          "duration": "4年",
+          "why_recommend": "",
+          "caution": "",
+          "source_label": "",
+          "history": [
+            {
+              "year": 2025,
+              "group_name": "计算机类·专业组23",
+              "plan_count": 92,
+              "min_score": 637,
+              "min_rank": 9279,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2024,
+              "group_name": "计算机类·专业组17",
+              "plan_count": 86,
+              "min_score": 635,
+              "min_rank": 9940,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            },
+            {
+              "year": 2023,
+              "group_name": "计算机类·专业组17",
+              "plan_count": 46,
+              "min_score": 639,
+              "min_rank": 9243,
+              "source_url": null,
+              "fetched_at": "2026-07-29"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

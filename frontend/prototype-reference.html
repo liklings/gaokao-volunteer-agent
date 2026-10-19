@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>志愿领航 · 高考志愿规划 Agent</title>
+<style>
+  :root{
+    --navy:#16233F;
+    --navy-soft:#2B3A5C;
+    --cream:#F7F5EF;
+    --card:#FDFCF9;
+    --line:#E7E2D6;
+    --red:#C1442A;
+    --red-soft:#F3E3DD;
+    --green:#2F7A53;
+    --green-soft:#E1EEE4;
+    --amber:#B9791F;
+    --amber-soft:#F5E9D6;
+    --muted:#6B7285;
+    --shadow: 0 1px 2px rgba(22,35,63,.04), 0 8px 24px rgba(22,35,63,.05);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--navy);
+    font-family: "PingFang SC","Noto Sans SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--red-soft);}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:var(--navy);
+    color:#F5F2EA;
+    padding:22px 0;
+    border-bottom:3px solid var(--red);
+  }
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:baseline;gap:10px;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:8px;background:var(--red);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:15px;color:#fff;flex:none;
+  }
+  .brand h1{font-size:19px;margin:0;font-weight:700;letter-spacing:.02em;}
+  .brand span.tag{font-size:12px;color:#C7CCDA;font-weight:400;}
+  .top-actions{display:flex;gap:10px;align-items:center;font-size:13px;color:#C7CCDA;}
+  .pill{
+    border:1px solid rgba(255,255,255,.18);
+    padding:5px 12px;border-radius:999px;font-size:12.5px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:36px 0 8px;}
+  .hero h2{font-size:26px;margin:0 0 6px;font-weight:800;}
+  .hero p.sub{color:var(--muted);font-size:14.5px;margin:0 0 22px;max-width:680px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--red-soft);color:var(--red);font-weight:700;font-size:12px;
+    padding:4px 10px;border-radius:6px;margin-bottom:12px;letter-spacing:.02em;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{padding:34px 0;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+  .section-head h3{
+    font-size:21px;margin:0;font-weight:800;position:relative;padding-left:14px;
+  }
+  .section-head h3::before{
+    content:"";position:absolute;left:0;top:4px;bottom:4px;width:4px;background:var(--red);border-radius:2px;
+  }
+  .section-head p{margin:0;color:var(--muted);font-size:13px;}
+
+  /* ---------- Cards / panels ---------- */
+  .panel{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);
+  }
+
+  /* ---------- Two pane: chat + synced state ---------- */
+  .split{
+    display:grid;grid-template-columns:1.15fr 1fr;gap:0;overflow:hidden;
+  }
+  @media (max-width:880px){ .split{grid-template-columns:1fr;} }
+
+  .chat-pane{padding:18px 18px 14px;border-right:1px solid var(--line);}
+  @media (max-width:880px){ .chat-pane{border-right:none;border-bottom:1px solid var(--line);} }
+
+  .chat-log{
+    display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto;padding:4px 2px 10px;
+    scrollbar-width:thin;
+  }
+  .msg{max-width:88%;padding:10px 13px;border-radius:12px;font-size:13.8px;white-space:pre-wrap;}
+  .msg.user{align-self:flex-end;background:var(--navy);color:#F3F1EA;border-bottom-right-radius:3px;}
+  .msg.agent{align-self:flex-start;background:#EFEDE4;color:var(--navy);border-bottom-left-radius:3px;}
+  .msg.agent .who{font-size:11px;color:var(--red);font-weight:700;display:block;margin-bottom:3px;}
+  .msg.sys{align-self:center;background:transparent;color:var(--muted);font-size:12px;text-align:center;max-width:100%;}
+
+  .chat-input-row{display:flex;gap:8px;margin-top:10px;}
+  .chat-input-row textarea{
+    flex:1;resize:none;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+    font-family:inherit;font-size:13.8px;background:#fff;color:var(--navy);min-height:44px;max-height:110px;
+  }
+  .chat-input-row textarea:focus{outline:2px solid var(--navy-soft);outline-offset:1px;}
+  .btn{
+    border:none;border-radius:9px;padding:10px 16px;font-size:13.5px;font-weight:700;cursor:pointer;
+    transition:transform .06s ease, opacity .15s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--navy);color:#fff;}
+  .btn-primary:hover{background:var(--navy-soft);}
+  .btn-outline{background:#fff;border:1px solid var(--line);color:var(--navy);}
+  .btn-outline:hover{border-color:var(--navy);}
+  .btn-red{background:var(--red);color:#fff;}
+  .btn:disabled{opacity:.5;cursor:not-allowed;}
+  .btn-sm{padding:6px 11px;font-size:12.5px;border-radius:7px;}
+  .quick-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+
+  /* ---------- Sync state pane ---------- */
+  .sync-pane{padding:18px;background:#F7F5EE;}
+  .sync-tag{
+    display:inline-flex;align-items:center;gap:6px;background:var(--green-soft);color:var(--green);
+    font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:10px;
+  }
+  .sync-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+  .sync-pane h4{margin:0 0 10px;font-size:16px;font-weight:800;}
+  .field-list{display:flex;flex-direction:column;gap:0;margin:0 0 12px;}
+  .field-row{
+    display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;
+  }
+  .field-row:last-child{border-bottom:none;}
+  .field-row .k{color:var(--muted);flex:none;}
+  .field-row .v{font-weight:600;text-align:right;}
+  .field-row .v.missing{color:var(--amber);font-weight:700;}
+  .missing-box{
+    background:var(--amber-soft);border:1px solid #E7CD9C;color:#7A5410;border-radius:10px;
+    padding:10px 12px;font-size:12.5px;margin-bottom:12px;
+  }
+  .missing-box b{display:block;margin-bottom:4px;}
+  .conflict-box{
+    background:var(--red-soft);border:1px solid #E7C3B4;color:#8A2E17;border-radius:10px;
+    padding:10px 12px;font-size:12.5px;margin-bottom:12px;
+  }
+  .sync-actions{display:flex;gap:8px;flex-wrap:wrap;}
+
+  /* ---------- Edit form (structured, non-chat control of same state) ---------- */
+  .edit-form{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+  .edit-form.open{display:block;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+  .field label{font-size:11.5px;color:var(--muted);font-weight:700;}
+  .field input, .field select{
+    border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff;color:var(--navy);
+  }
+  .field input:focus, .field select:focus{outline:2px solid var(--navy-soft);}
+
+  /* ---------- Stepper ---------- */
+  .stepper{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+  @media (max-width:920px){ .stepper{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:560px){ .stepper{grid-template-columns:1fr 1fr;} }
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .step .num{
+    width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;font-weight:800;font-size:12px;
+    display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px;
+  }
+  .step.active{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft);}
+  .step.done .num{background:var(--green);}
+  .step.done{opacity:.75;}
+  .step h5{margin:0 0 5px;font-size:13.5px;font-weight:800;}
+  .step p{margin:0;font-size:11.8px;color:var(--muted);}
+
+  /* ---------- Candidate cards ---------- */
+  .toggle-row{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
+  .seg{display:inline-flex;background:#EFEDE4;border-radius:9px;padding:3px;}
+  .seg button{
+    border:none;background:transparent;padding:7px 14px;font-size:12.8px;font-weight:700;border-radius:7px;cursor:pointer;color:var(--muted);
+  }
+  .seg button.active{background:var(--navy);color:#fff;}
+  .sample-badge{
+    margin-left:auto;font-size:11px;color:var(--muted);background:#EFEDE4;padding:4px 9px;border-radius:999px;border:1px solid var(--line);
+  }
+
+  .cand-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:880px){ .cand-grid{grid-template-columns:1fr;} }
+
+  .cand-card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .cand-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .cand-strategy{font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:5px;}
+  .cand-name{font-size:19px;font-weight:800;margin:2px 0 2px;}
+  .cand-loc{font-size:12px;color:var(--muted);}
+  .prob-badge{
+    text-align:center;border-radius:12px;padding:8px 14px;min-width:76px;flex:none;
+  }
+  .prob-badge .pct{font-size:20px;font-weight:800;line-height:1;}
+  .prob-badge .lbl{font-size:10.5px;font-weight:700;margin-top:2px;}
+  .prob-badge .sub{font-size:9.5px;opacity:.75;}
+  .prob-baowen{background:var(--green-soft);color:var(--green);}
+  .prob-wen{background:#DDE7F3;color:#2A548C;}
+  .prob-chong{background:var(--amber-soft);color:#8A5A10;}
+  .prob-jichong{background:var(--red-soft);color:var(--red);}
+
+  .tag-row{display:flex;gap:6px;flex-wrap:wrap;}
+  .tag{background:#EFEDE4;color:var(--navy-soft);font-size:11px;padding:3px 9px;border-radius:6px;font-weight:600;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#F7F5EE;border-radius:10px;padding:10px;}
+  .stat{text-align:left;}
+  .stat .k{font-size:10.5px;color:var(--muted);display:block;margin-bottom:2px;}
+  .stat .v{font-size:13.5px;font-weight:700;}
+
+  table.hist{width:100%;border-collapse:collapse;font-size:12px;}
+  table.hist th{text-align:left;color:var(--muted);font-weight:600;padding:5px 4px;border-bottom:1px solid var(--line);font-size:11px;}
+  table.hist td{padding:6px 4px;border-bottom:1px dashed var(--line);}
+  table.hist td.diff-pos{color:var(--green);font-weight:700;}
+  table.hist td.diff-neg{color:var(--red);font-weight:700;}
+
+  .why-box{background:#F7F5EE;border-radius:10px;padding:10px 12px;font-size:12.3px;color:var(--navy-soft);}
+  .why-box b{color:var(--navy);}
+  .src-row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);flex-wrap:wrap;gap:6px;}
+  .src-row a{color:var(--navy-soft);text-decoration:underline;}
+
+  details.rule{border-top:1px solid var(--line);padding-top:8px;}
+  details.rule summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--navy-soft);list-style:none;display:flex;align-items:center;gap:5px;}
+  details.rule summary::before{content:"▶";font-size:9px;transition:transform .15s;}
+  details.rule[open] summary::before{transform:rotate(90deg);}
+  details.rule .body{padding:8px 2px 2px;font-size:12.2px;color:var(--navy-soft);}
+  .cand-actions{display:flex;gap:8px;margin-top:2px;}
+
+  /* ---------- rule audit list (资格校验) ---------- */
+  .rule-list{display:flex;flex-direction:column;gap:8px;}
+  .rule-item{
+    display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;
+  }
+  .rule-icon{width:22px;height:22px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;margin-top:1px;}
+  .rule-icon.pass{background:var(--green);}
+  .rule-icon.fail{background:var(--red);}
+  .rule-main{flex:1;}
+  .rule-main .name{font-weight:700;font-size:13.5px;}
+  .rule-main .desc{font-size:12.3px;color:var(--muted);margin-top:2px;}
+  .rule-main .meta{font-size:11px;color:var(--muted);margin-top:5px;}
+
+  /* ---------- Plan / timeline ---------- */
+  .plan-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;}
+  @media (max-width:880px){ .plan-wrap{grid-template-columns:1fr;} }
+  .timeline{list-style:none;margin:0;padding:0;position:relative;}
+  .timeline li{position:relative;padding:0 0 20px 26px;}
+  .timeline li::before{content:"";position:absolute;left:6px;top:2px;bottom:0;width:1px;background:var(--line);}
+  .timeline li:last-child::before{display:none;}
+  .timeline li::after{content:"";position:absolute;left:2px;top:2px;width:9px;height:9px;border-radius:50%;background:var(--navy);}
+  .timeline li .date{font-size:11.5px;color:var(--red);font-weight:700;}
+  .timeline li .title{font-weight:700;font-size:13.8px;margin:2px 0 2px;}
+  .timeline li .desc{font-size:12.3px;color:var(--muted);}
+
+  .diff-box{background:#F7F5EE;border-radius:12px;padding:12px 14px;font-size:12.5px;margin-bottom:12px;}
+  .diff-line{display:flex;gap:6px;margin-bottom:4px;}
+  .diff-line.add{color:var(--green);}
+  .diff-line.remove{color:var(--red);}
+  .diff-line.chg{color:#2A548C;}
+
+  .version-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:10px;}
+
+  /* ---------- Banners for edge cases ---------- */
+  .banner{
+    display:flex;gap:10px;align-items:flex-start;border-radius:12px;padding:12px 14px;font-size:13px;margin-bottom:14px;
+  }
+  .banner .dot{width:8px;height:8px;border-radius:50%;flex:none;margin-top:6px;background:var(--red);}
+  .banner.warn{background:var(--amber-soft);color:#7A5410;border:1px solid #E7CD9C;}
+  .banner.warn .dot{background:var(--amber);}
+  .banner.info{background:#E7EEF7;color:#264873;border:1px solid #C9D9EC;}
+  .banner.info .dot{background:#3B6BAE;}
+  .banner.err{background:var(--red-soft);color:#8A2E17;border:1px solid #E7C3B4;}
+
+  footer{padding:30px 0 50px;color:var(--muted);font-size:12px;}
+  footer .wrap{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  .empty{
+    text-align:center;padding:36px 20px;color:var(--muted);font-size:13.5px;
+  }
+  .empty .big{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:6px;}
+
+  .spin{display:inline-block;width:12px;height:12px;border:2px solid #ccc;border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:6px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-thumb{background:#D8D3C4;border-radius:4px;}
+
+  [tabindex]:focus-visible, button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible{
+    outline:2px solid var(--navy); outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">志</span>
+      <div>
+        <h1>志愿领航 Agent</h1>
+        <div class="tag">高考志愿对话式规划 · 官方规则可核对</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="pill" id="statusPill">● 未开始</span>
+      <span class="pill">示例数据 · 演示部署</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">对话连接真实功能</span>
+    <h2>把"分数"变成一份可核对、可调整的志愿方案</h2>
+    <p class="sub">说明你的省份、分数、选科与偏好，Agent 会追问缺失条件，用规则逐条核验资格，再给出可比较、可修改、可导出的志愿方案。左侧对话，右侧页面同步显示结果 —— 不是一段推荐文字，而是一整套可核查的过程。</p>
+  </section>
+
+  <!-- ================= STEP 01+02 : 对话建立条件 + 页面同步显示 ================= -->
+  <section id="stepConverse">
+    <div class="section-head">
+      <h3>对话建立用户条件</h3>
+      <p>自然语言说明目标，缺失或冲突的条件会被逐项追问</p>
+    </div>
+
+    <div class="panel split">
+      <div class="chat-pane">
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input-row">
+          <textarea id="chatInput" placeholder="例如：我是江苏物理类考生，637分，位次5200，选科物理+化学，想找计算机相关专业……" rows="2"></textarea>
+          <button class="btn btn-primary" id="sendBtn">发送</button>
+        </div>
+        <div class="quick-row">
+          <button class="btn btn-outline btn-sm" data-fill="我是江苏物理类考生，2026届，637分，位次5200，选科物理+化学，想找计算机相关专业。">示例：江苏物理类考生</button>
+          <button class="btn btn-outline btn-sm" data-fill="优先考虑省内和周边城市，专业比学校层次更重要，学费预算每年不超过1万元，并排除不满足选科要求的专业。">示例：补充偏好</button>
+          <button class="btn btn-outline btn-sm" id="resetBtn">重新开始</button>
+        </div>
+      </div>
+
+      <div class="sync-pane">
+        <span class="sync-tag"><span class="dot"></span>页面同步显示</span>
+        <h4>资格过滤与志愿方案 · 当前条件</h4>
+
+        <div id="missingBox" class="missing-box" style="display:none;">
+          <b>还缺少这些信息</b>
+          <span id="missingText"></span>
+        </div>
+        <div id="conflictBox" class="conflict-box" style="display:none;">
+          <b>发现条件冲突</b>
+          <span id="conflictText"></span>
+        </div>
+
+        <div class="field-list" id="fieldList"></div>
+
+        <div class="sync-actions">
+          <button class="btn btn-outline btn-sm" id="viewBasisBtn">查看依据</button>
+          <button class="btn btn-outline btn-sm" id="editCondBtn">修改条件</button>
+          <button class="btn btn-red btn-sm" id="confirmBtn" disabled>确认结果</button>
+        </div>
+
+        <div class="edit-form" id="editForm">
+          <div class="grid2">
+            <div class="field"><label>省份</label>
+              <select id="f_province">
+                <option value="江苏">江苏</option>
+                <option value="上海">上海</option>
+                <option value="广东">广东</option>
+              </select>
+            </div>
+            <div class="field"><label>年份 / 届</label><input id="f_year" type="number" value="2026" min="2024" max="2027"></div>
+            <div class="field"><label>类别</label>
+              <select id="f_track"><option value="物理类">物理类</option><option value="历史类">历史类</option></select>
+            </div>
+            <div class="field"><label>选科组合</label>
+              <select id="f_subjects">
+                <option value="物理,化学">物理 + 化学</option>
+                <option value="物理,生物">物理 + 生物</option>
+                <option value="历史,政治">历史 + 政治</option>
+                <option value="物理,地理">物理 + 地理</option>
+              </select>
+            </div>
+            <div class="field"><label>高考分数</label><input id="f_score" type="number" placeholder="如 637"></div>
+            <div class="field"><label>全省位次</label><input id="f_rank" type="number" placeholder="如 5200"></div>
+            <div class="field"><label>专业关键词</label><input id="f_major" type="text" placeholder="如 计算机"></div>
+            <div class="field"><label>学费上限（元/年，可空）</label><input id="f_budget" type="number" placeholder="不限则留空"></div>
+          </div>
+          <button class="btn btn-primary btn-sm" id="applyEditBtn">应用并重新计算</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEPPER: 完整跑通的真实流程 ================= -->
+  <section id="stepFlow">
+    <div class="section-head">
+      <h3>完整跑通的真实流程</h3>
+      <p>下方状态随左上方对话与操作实时推进</p>
+    </div>
+    <div class="stepper" id="stepper"></div>
+  </section>
+
+  <!-- ================= 资格校验 ================= -->
+  <section id="stepRules" style="display:none;">
+    <div class="section-head">
+      <h3>资格校验</h3>
+      <p>每条候选逐条核对规则、原因、来源与适用周期</p>
+    </div>
+    <div class="rule-list" id="ruleList"></div>
+  </section>
+
+  <!-- ================= 候选与方案比较 ================= -->
+  <section id="stepCandidates" style="display:none;">
+    <div class="section-head">
+      <h3>候选与方案比较</h3>
+      <p>结构化候选卡显示匹配依据、条件差距、费用、风险与策略取舍</p>
+    </div>
+
+    <div class="toggle-row">
+      <div class="seg" id="strategySeg">
+        <button class="active" data-strategy="院校优先">院校优先</button>
+        <button data-strategy="专业优先">专业优先</button>
+      </div>
+      <div class="seg" id="sortSeg">
+        <button class="active" data-sort="prob_desc">按把握从高到低</button>
+        <button data-sort="prob_asc">按把握从低到高</button>
+      </div>
+      <span class="sample-badge">示例数据 · 仅演示界面</span>
+    </div>
+
+    <div class="cand-grid" id="candGrid"></div>
+  </section>
+
+  <!-- ================= 计划与版本 ================= -->
+  <section id="stepPlan" style="display:none;">
+    <div class="section-head">
+      <h3>计划与版本</h3>
+      <p>后续行动、关键日期、风险提醒、来源更新时间和前后版本差异</p>
+    </div>
+
+    <div class="plan-wrap">
+      <div class="panel" style="padding:20px;">
+        <h4 style="margin:0 0 14px;font-size:15px;">行动时间线</h4>
+        <ul class="timeline" id="timelineList"></ul>
+      </div>
+
+      <div class="panel" style="padding:20px;">
+        <div class="version-row">
+          <span id="versionLabel">版本 v1（尚未修改）</span>
+          <button class="btn btn-outline btn-sm" id="exportBtn">导出方案</button>
+        </div>
+        <div id="diffArea"></div>
+        <div class="banner info" style="margin-top:4px;">
+          <span class="dot"></span>
+          <span>修改任意条件后点击"应用并重新计算"，此处会显示与上一版本相比新增、剔除或概率变化的候选。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>志愿领航 Agent · 演示部署版本 —— 页面内全部院校数据为示例数据，用于展示交互与规则逻辑，正式使用前需接入各省教育考试院官方公开数据。</span>
+    <span>模型：Claude Sonnet 4.6</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+/* ============================================================
+   0. MOCK OFFICIAL DATA
+   -------------------------------------------------------------
+   In a production deployment this array would be replaced by a
+   real data pipeline (province exam authority open data, updated
+   each admission cycle). It is kept in this exact shape so the
+   filtering / scoring engine below does not need to change.
+   ============================================================ */
+function loadOfficialData(){
+  return [
+    {
+      id:"seu-cs", university:"东南大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1102", group:"计算机类·专业组4", subjectsRequired:["物理","化学"],
+      tags:["公办","985","211","双一流","强基计划"], majorKeyword:["计算机","软件","人工智能","信息"],
+      tuition:6500, duration:"4年", strategyType:"院校优先",
+      history:[{year:2025,plan:72,minScore:657,minRank:4680},{year:2024,plan:70,minScore:654,minRank:4950},{year:2023,plan:68,minScore:652,minRank:5120}],
+      why:"学校层次、专业方向和城市均符合偏好，但招生人数较少，位次波动较大，适合作为冲刺项。",
+      caution:"近三年最低位次逐年提高，若最终位次未能提升建议保留 1-2 个更稳妥的平行志愿。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"nuist-cs", university:"南京邮电大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1305", group:"计算机类·专业组03", subjectsRequired:["物理","化学"],
+      tags:["公办","双一流","本科批"], majorKeyword:["计算机","软件","通信","信息"],
+      tuition:6380, duration:"4年", strategyType:"专业优先",
+      history:[{year:2025,plan:24,minScore:628,minRank:6240},{year:2024,plan:20,minScore:626,minRank:6580},{year:2023,plan:18,minScore:623,minRank:6910}],
+      why:"专业匹配度高，往年位次留有余量，适合放在志愿方案中段作为稳妥选择。",
+      caution:"招生计划逐年小幅减少，建议关注当年最新计划数是否有变化。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"nju-cs", university:"南京大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1101", group:"计算机类·匡亚明学院", subjectsRequired:["物理","化学"],
+      tags:["公办","985","211","双一流"], majorKeyword:["计算机","人工智能"],
+      tuition:5800, duration:"4年", strategyType:"院校优先",
+      history:[{year:2025,plan:20,minScore:672,minRank:1980},{year:2024,plan:18,minScore:669,minRank:2150},{year:2023,plan:18,minScore:667,minRank:2300}],
+      why:"学校与专业层次都很突出，但历年最低位次远高于当前位次，属于明显冲刺/极限项。",
+      caution:"按当前位次录取概率很低，建议仅作为方案中的'冲一冲'备选，不宜作为主力志愿。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"njust-cs", university:"南京理工大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1201", group:"计算机类·专业组02", subjectsRequired:["物理","化学"],
+      tags:["公办","211","双一流"], majorKeyword:["计算机","人工智能","软件"],
+      tuition:6600, duration:"4年", strategyType:"院校优先",
+      history:[{year:2025,plan:45,minScore:641,minRank:5480},{year:2024,plan:42,minScore:638,minRank:5720},{year:2023,plan:40,minScore:636,minRank:5890}],
+      why:"211、双一流院校中位次要求相对温和，专业方向与目标一致，是较均衡的选择。",
+      caution:"该专业组内含多个方向，入学后分流规则需在招生章程中进一步确认。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"hhu-cs", university:"河海大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1103", group:"计算机类·专业组05", subjectsRequired:["物理","化学"],
+      tags:["公办","211","双一流"], majorKeyword:["计算机","软件","信息"],
+      tuition:6260, duration:"4年", strategyType:"专业优先",
+      history:[{year:2025,plan:38,minScore:632,minRank:6120},{year:2024,plan:36,minScore:629,minRank:6480},{year:2023,plan:35,minScore:627,minRank:6720}],
+      why:"211 院校中位次余量较大，专业排名稳定，适合作为方案中的稳妥选项。",
+      caution:"学校传统优势学科为水利，计算机类专业资源相对集中在少数校区，建议核实校区安排。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"just-cs", university:"江苏大学", city:"镇江", province:"江苏", track:"物理类",
+      code:"1401", group:"计算机类·专业组01", subjectsRequired:["物理","化学"],
+      tags:["公办","双一流"], majorKeyword:["计算机","软件","信息"],
+      tuition:5800, duration:"4年", strategyType:"专业优先",
+      history:[{year:2025,plan:60,minScore:598,minRank:9200},{year:2024,plan:58,minScore:594,minRank:9680},{year:2023,plan:55,minScore:591,minRank:10050}],
+      why:"位次余量非常充足，录取把握大，适合作为方案中的保底选项。",
+      caution:"城市与院校层次低于其他候选，若更看重院校声誉可适当降低此项排序。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"nuaa-cs", university:"南京航空航天大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1104", group:"计算机类·专业组03", subjectsRequired:["物理","化学"],
+      tags:["公办","211","双一流"], majorKeyword:["计算机","软件","人工智能"],
+      tuition:6600, duration:"4年", strategyType:"院校优先",
+      history:[{year:2025,plan:33,minScore:648,minRank:5060},{year:2024,plan:32,minScore:645,minRank:5310},{year:2023,plan:30,minScore:642,minRank:5540}],
+      why:"211 院校中计算机类认可度较高，位次要求与目标位次接近，是关键的中段比较项。",
+      caution:"位次差距接近临界值，属于把握中等的选项，建议与南京邮电大学等做直接比较。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"njtech-cs", university:"南京工业大学", city:"南京", province:"江苏", track:"物理类",
+      code:"1502", group:"计算机类·专业组02", subjectsRequired:["物理","化学"],
+      tags:["公办","本科批"], majorKeyword:["计算机","软件","信息"],
+      tuition:5600, duration:"4年", strategyType:"专业优先",
+      history:[{year:2025,plan:50,minScore:610,minRank:8100},{year:2024,plan:48,minScore:607,minRank:8460},{year:2023,plan:45,minScore:604,minRank:8790}],
+      why:"位次余量充足，学费较低，专业口碑在省内本科批中排名靠前。",
+      caution:"非 211/双一流院校，若院校层次是硬性要求需谨慎排序。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"cczu-cs", university:"常州大学", city:"常州", province:"江苏", track:"物理类",
+      code:"1610", group:"计算机类·专业组01", subjectsRequired:["物理"],
+      tags:["公办","本科批"], majorKeyword:["计算机","软件"],
+      tuition:5400, duration:"4年", strategyType:"专业优先",
+      history:[{year:2025,plan:40,minScore:585,minRank:11200},{year:2024,plan:38,minScore:580,minRank:11800},{year:2023,plan:36,minScore:577,minRank:12100}],
+      why:"选科要求仅物理，位次余量很大，是方案中的保底备选。",
+      caution:"城市与院校知名度相对有限，建议结合就业地区偏好判断是否保留。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"suda-cs", university:"苏州大学", city:"苏州", province:"江苏", track:"物理类",
+      code:"1201", group:"计算机类·专业组04", subjectsRequired:["物理","化学"],
+      tags:["公办","211","双一流"], majorKeyword:["计算机","软件","人工智能"],
+      tuition:6360, duration:"4年", strategyType:"院校优先",
+      history:[{year:2025,plan:55,minScore:635,minRank:5850},{year:2024,plan:52,minScore:632,minRank:6120},{year:2023,plan:50,minScore:629,minRank:6380}],
+      why:"苏州本地院校，211 层次，位次要求与目标接近，城市发达、就业机会多。",
+      caution:"苏州本地竞争激烈，建议同时关注同批次苏州地区其他院校计划数变化。",
+      sourceLabel:"示例来源：江苏省教育考试院 2025 年公开录取数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"shu-cs", university:"上海大学", city:"上海", province:"上海", track:"物理类",
+      code:"2201", group:"计算机类·专业组01", subjectsRequired:["物理"],
+      tags:["公办","211","双一流"], majorKeyword:["计算机","软件"],
+      tuition:6300, duration:"4年", strategyType:"院校优先",
+      history:[{year:2025,plan:30,minScore:520,minRank:8600},{year:2024,plan:28,minScore:516,minRank:9100},{year:2023,plan:26,minScore:512,minRank:9400}],
+      why:"上海本地211院校，适用上海考生等级分体系，示例数据仅用于展示跨省份架构。",
+      caution:"上海采用等级分制度，分数与位次口径与江苏不同，报考前需核对最新一分一段表。",
+      sourceLabel:"示例来源：上海市教育考试院公开数据（演示用）", sourceUpdated:"2025-08-02"
+    },
+    {
+      id:"gdut-cs", university:"广东工业大学", city:"广州", province:"广东", track:"物理类",
+      code:"3301", group:"计算机类·专业组02", subjectsRequired:["物理","化学"],
+      tags:["公办","本科批"], majorKeyword:["计算机","软件","信息"],
+      tuition:6500, duration:"4年", strategyType:"专业优先",
+      history:[{year:2025,plan:65,minScore:565,minRank:52000},{year:2024,plan:60,minScore:560,minRank:54500},{year:2023,plan:58,minScore:556,minRank:57000}],
+      why:"广东考生基数较大，示例数据用于展示同一引擎在不同省份下的可扩展性。",
+      caution:"广东位次基数与江苏差异极大，跨省对比时不能直接比较位次数字。",
+      sourceLabel:"示例来源：广东省教育考试院公开数据（演示用）", sourceUpdated:"2025-08-02"
+    }
+  ];
+}
+
+/* ============================================================
+   1. STATE
+   ============================================================ */
+const REQUIRED_FIELDS = ["province","track","subjects","score_or_rank","majorKeyword"];
+const FIELD_LABELS = {
+  province:"省份", year:"年份/届", track:"类别", subjects:"选科组合",
+  score:"高考分数", rank:"全省位次", majorKeyword:"专业关键词", cityPref:"城市偏好", budgetMax:"学费上限(元/年)"
+};
+
+let state = {
+  profile:{ province:null, year:2026, track:null, subjects:null, score:null, rank:null, majorKeyword:null, cityPref:null, budgetMax:null },
+  missing:[], conflicts:[],
+  chatHistory:[], // {role:'user'|'assistant', content:string}
+  confirmed:false,
+  candidates:[], // filtered+scored dataset, current view
+  prevCandidates:null, // for diff
+  versionN:1,
+  strategyFilter:"院校优先",
+  sortMode:"prob_desc"
+};
+
+const STORAGE_KEY = "gaokao_agent_profile_v1";
+
+/* ============================================================
+   2. UTIL
+   ============================================================ */
+function $(sel){ return document.querySelector(sel); }
+function $all(sel){ return Array.from(document.querySelectorAll(sel)); }
+function esc(s){ return (s==null?"":String(s)).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function clamp(n,min,max){ return Math.max(min,Math.min(max,n)); }
+
+function fmt(n){ return n==null? "—" : n.toLocaleString("zh-CN"); }
+
+async function saveProfile(){
+  try{
+    await window.storage.set("profile", JSON.stringify({profile:state.profile, versionN:state.versionN}), false);
+  }catch(e){ /* non-fatal in demo */ }
+}
+async function loadProfileFromStorage(){
+  try{
+    const r = await window.storage.get("profile", false);
+    if(r && r.value){
+      const parsed = JSON.parse(r.value);
+      if(parsed && parsed.profile){ state.profile = Object.assign(state.profile, parsed.profile); state.versionN = parsed.versionN || 1; }
+    }
+  }catch(e){ /* key not found on first run - fine */ }
+}
+
+/* ============================================================
+   3. CHAT + AGENT CALL
+   ============================================================ */
+function addMsg(role, text){
+  const log = $("#chatLog");
+  const div = document.createElement("div");
+  if(role==="user"){ div.className="msg user"; div.textContent=text; }
+  else if(role==="sys"){ div.className="msg sys"; div.textContent=text; }
+  else { div.className="msg agent"; div.innerHTML = '<span class="who">Agent</span>' + esc(text).replace(/\n/g,"<br>"); }
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+function agentSystemPrompt(){
+  return `你是"志愿领航 Agent"，一个高考志愿规划助手。你的任务是通过多轮对话，从用户的自然语言描述中提取结构化的报考条件，并在信息不全时用简短、具体的问题追问缺失或冲突的条件。
+
+需要收集的字段（profile 对象的 key）：
+- province：省份（字符串，如"江苏"）
+- year：年份/届（数字，如 2026）
+- track：类别，"物理类" 或 "历史类"
+- subjects：选科数组，如 ["物理","化学"]
+- score：高考分数（数字，可为空，与 rank 至少填一个）
+- rank：全省位次（数字，可为空，与 score 至少填一个）
+- majorKeyword：专业关键词（字符串，如"计算机"）
+- cityPref：城市偏好（字符串或数组，可空）
+- budgetMax：学费上限，元/年（数字，可空）
+
+规则：
+1. 每轮都要基于"当前已知条件"和"用户最新这句话"，合并推断出的新信息，返回更新后的完整 profile（已知字段不要丢失，除非用户明确修改）。
+2. 必填字段为 province、track、subjects、(score 或 rank 至少一个)、majorKeyword。全部具备时 ready=true。
+3. 如果缺少必填字段，在 missing 数组中列出缺失字段的中文名称（如"省份"、"选科组合"），并在 reply 中用一句自然的话追问，一次最多追问 2 项，不要罗列所有字段。
+4. 如果发现明显冲突（例如选择的专业方向与选科不兼容、城市偏好与省份明显矛盾），在 conflicts 数组中用一句话描述冲突，并在 reply 中说明。
+5. reply 要简洁（1-3 句话），像一个专业、克制、友好的规划顾问，不要输出多余的寒暄。
+6. 只输出一个 JSON 对象，不要输出任何 JSON 之外的文字、不要使用 markdown 代码块围栏。
+
+JSON 结构：
+{"reply": "字符串", "profile": {...完整合并后的对象...}, "missing": ["..."], "conflicts": ["..."], "ready": true/false}`;
+}
+
+async function callAgent(userText){
+  state.chatHistory.push({role:"user", content:userText});
+  const historyForModel = state.chatHistory.map(m=>({role:m.role==="user"?"user":"assistant", content:m.content}));
+
+  const currentProfileNote = `当前已知条件（JSON）：${JSON.stringify(state.profile)}`;
+  const messages = [
+    ...historyForModel.slice(0,-1),
+    { role:"user", content: currentProfileNote + "\n\n用户最新输入：" + userText }
+  ];
+
+  const body = {
+    model:"claude-sonnet-4-6",
+    max_tokens:1000,
+    system: agentSystemPrompt(),
+    messages: messages
+  };
+
+  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify(body)
+  });
+  if(!resp.ok){ throw new Error("Agent 请求失败: " + resp.status); }
+  const data = await resp.json();
+  const textBlock = (data.content||[]).find(b=>b.type==="text");
+  let raw = textBlock ? textBlock.text : "{}";
+  raw = raw.trim().replace(/^```json/,"").replace(/^```/,"").replace(/```$/,"").trim();
+
+  let parsed;
+  try{ parsed = JSON.parse(raw); }
+  catch(e){
+    // fallback: couldn't parse structured output
+    parsed = { reply: raw || "抱歉，我没能理解这句话，能再具体说明一下吗？", profile: state.profile, missing: state.missing, conflicts: state.conflicts, ready:false };
+  }
+  state.chatHistory.push({role:"assistant", content: parsed.reply || ""});
+  return parsed;
+}
+
+/* ============================================================
+   4. RENDER: synced condition panel
+   ============================================================ */
+function requiredMissingList(p){
+  const missing = [];
+  if(!p.province) missing.push("省份");
+  if(!p.track) missing.push("类别（物理/历史）");
+  if(!p.subjects || !p.subjects.length) missing.push("选科组合");
+  if(!p.score && !p.rank) missing.push("分数或位次");
+  if(!p.majorKeyword) missing.push("专业关键词");
+  return missing;
+}
+
+function renderFieldPanel(){
+  const p = state.profile;
+  const rows = [
+    ["province", p.province],
+    ["year", p.year],
+    ["track", p.track],
+    ["subjects", p.subjects && p.subjects.length ? p.subjects.join(" + ") : null],
+    ["score", p.score],
+    ["rank", p.rank],
+    ["majorKeyword", p.majorKeyword],
+    ["cityPref", Array.isArray(p.cityPref)? p.cityPref.join("、") : p.cityPref],
+    ["budgetMax", p.budgetMax ? p.budgetMax + " 元/年" : null],
+  ];
+  const list = $("#fieldList");
+  list.innerHTML = rows.map(([k,v])=>{
+    const missing = (v===null || v===undefined || v==="");
+    return `<div class="field-row"><span class="k">${FIELD_LABELS[k]}</span><span class="v ${missing?'missing':''}">${missing? '待补充' : esc(v)}</span></div>`;
+  }).join("");
+
+  const missing = requiredMissingList(p);
+  state.missing = missing;
+  const missBox = $("#missingBox");
+  if(missing.length){
+    missBox.style.display="block";
+    $("#missingText").textContent = missing.join("、") + "。可以在对话框中直接补充，或点击「修改条件」手动填写。";
+  } else { missBox.style.display="none"; }
+
+  const confBox = $("#conflictBox");
+  if(state.conflicts && state.conflicts.length){
+    confBox.style.display="block";
+    $("#conflictText").textContent = state.conflicts.join("；");
+  } else { confBox.style.display="none"; }
+
+  $("#confirmBtn").disabled = missing.length>0;
+  $("#statusPill").textContent = missing.length ? "● 收集条件中" : (state.confirmed ? "● 方案已确认" : "● 条件已就绪，待确认");
+}
+
+function fillEditFormFromState(){
+  const p = state.profile;
+  if(p.province) $("#f_province").value = p.province;
+  if(p.year) $("#f_year").value = p.year;
+  if(p.track) $("#f_track").value = p.track;
+  if(p.subjects && p.subjects.length){
+    const key = p.subjects.join(",");
+    const opt = $all("#f_subjects option").find(o=>o.value===key);
+    if(opt) $("#f_subjects").value = key;
+  }
+  if(p.score) $("#f_score").value = p.score;
+  if(p.rank) $("#f_rank").value = p.rank;
+  if(p.majorKeyword) $("#f_major").value = p.majorKeyword;
+  if(p.budgetMax) $("#f_budget").value = p.budgetMax;
+}
+
+/* ============================================================
+   5. STEPPER
+   ============================================================ */
+const STEPS = [
+  {key:"converse", n:"01", title:"对话建立条件", desc:"用户说明背景和目标，Agent 逐项追问影响资格判断的缺失条件与冲突。"},
+  {key:"fetch", n:"02", title:"获取官方信息", desc:"展示本地区、本年度的示例数据与来源标注（正式版对接官方开放数据）。"},
+  {key:"filter", n:"03", title:"执行资格过滤", desc:"排除不满足硬条件的候选，并逐条说明过滤原因。"},
+  {key:"compare", n:"04", title:"比较多套方案", desc:"展示候选、差距、成本、风险和不同策略之间的取舍。"},
+  {key:"edit", n:"05", title:"修改关键条件", desc:"改变一项分数、预算、地区或目标，重新运行检索、过滤和规划。"},
+  {key:"confirm", n:"06", title:"确认并导出", desc:"对比前后版本，确认最终方案并导出带来源的行动计划。"}
+];
+let currentStepIdx = 0;
+
+function renderStepper(){
+  const wrap = $("#stepper");
+  wrap.innerHTML = STEPS.map((s,i)=>{
+    const cls = i<currentStepIdx ? "done" : (i===currentStepIdx ? "active" : "");
+    return `<div class="step ${cls}"><span class="num">${s.n}</span><h5>${s.title}</h5><p>${s.desc}</p></div>`;
+  }).join("");
+}
+function setStep(i){ currentStepIdx = clamp(i,0,STEPS.length-1); renderStepper(); }
+
+/* ============================================================
+   6. FILTER + SCORING ENGINE
+   ============================================================ */
+function scoreProbability(diff){
+  // calibrated so diff=-520 -> ~42%, diff=1040 -> ~71% (matches reference example)
+  let pct = 51.67 + diff*0.01859;
+  pct = clamp(Math.round(pct), 3, 97);
+  return pct;
+}
+function probCategory(pct){
+  if(pct>=75) return {label:"保底", cls:"prob-baowen"};
+  if(pct>=50) return {label:"稳妥", cls:"prob-wen"};
+  if(pct>=25) return {label:"冲刺", cls:"prob-chong"};
+  return {label:"极冲/慎选", cls:"prob-jichong"};
+}
+
+function evaluateRules(entry, p){
+  const rank = p.rank || null;
+  const rules = [];
+
+  const provMatch = entry.province === p.province;
+  rules.push({name:"省份匹配", pass:provMatch, desc: provMatch? `该校在 ${entry.province} 招生，符合目标省份。` : `该校在 ${entry.province} 招生，与目标省份 ${p.province||"—"} 不一致。`});
+
+  const trackMatch = entry.track === p.track;
+  rules.push({name:"科类匹配", pass:trackMatch, desc: trackMatch? `科类为 ${entry.track}，与考生一致。` : `该专业组要求 ${entry.track}，与考生科类不一致。`});
+
+  const subjSet = new Set(p.subjects||[]);
+  const subjOk = (entry.subjectsRequired||[]).every(s=>subjSet.has(s));
+  rules.push({name:"选科要求", pass:subjOk, desc: subjOk? `要求选考 ${entry.subjectsRequired.join("+")}，考生选科满足。` : `要求选考 ${entry.subjectsRequired.join("+")}，考生选科（${(p.subjects||[]).join("+")||"未填写"}）不满足。`});
+
+  let budgetOk = true;
+  if(p.budgetMax){ budgetOk = entry.tuition <= Number(p.budgetMax); }
+  rules.push({name:"学费预算", pass:budgetOk, desc: p.budgetMax ? (budgetOk? `学费 ${entry.tuition} 元/年，未超过预算 ${p.budgetMax} 元/年。` : `学费 ${entry.tuition} 元/年，超出预算 ${p.budgetMax} 元/年。`) : `未设置学费上限，默认不限制。`});
+
+  const majorOk = !p.majorKeyword || (entry.majorKeyword||[]).some(k=> k.includes(p.majorKeyword) || p.majorKeyword.includes(k));
+  rules.push({name:"专业方向", pass:majorOk, desc: majorOk? `专业方向包含"${p.majorKeyword||''}"相关内容。` : `专业方向与关键词"${p.majorKeyword}"未直接匹配（已放宽显示）。`});
+
+  const latest = entry.history[0];
+  let diff = null, pct = null;
+  if(rank && latest){
+    diff = latest.minRank - rank; // positive = margin (good), negative = risk
+    pct = scoreProbability(diff);
+  }
+
+  const allHardPass = provMatch && trackMatch && subjOk && budgetOk;
+  return { rules, allHardPass, diff, pct, majorSoftMiss: !majorOk };
+}
+
+function runFilterAndScore(){
+  const data = loadOfficialData();
+  const p = state.profile;
+  const results = [];
+  const auditRows = [];
+
+  data.forEach(entry=>{
+    const ev = evaluateRules(entry, p);
+    auditRows.push({entry, ev});
+    if(ev.allHardPass){
+      results.push({entry, ev});
+    }
+  });
+
+  // soft relax: if major keyword filtered out everything, note it (edge case) but keep hard-pass set as-is
+  return {results, auditRows};
+}
+
+/* ============================================================
+   7. RENDER: rule audit (资格校验)
+   ============================================================ */
+function renderRuleAudit(auditRows){
+  const list = $("#ruleList");
+  if(!auditRows.length){
+    list.innerHTML = `<div class="empty"><div class="big">暂无可核验的候选</div>示例数据集为空或加载失败。</div>`;
+    return;
+  }
+  list.innerHTML = auditRows.map(({entry,ev})=>{
+    const icon = ev.allHardPass ? '<span class="rule-icon pass">✓</span>' : '<span class="rule-icon fail">✕</span>';
+    const failReasons = ev.rules.filter(r=>!r.pass).map(r=>r.desc).join(' '); 
+    const passSummary = ev.allHardPass ? "全部硬性规则通过" : "未通过：" + failReasons;
+    return `<div class="rule-item">
+      ${icon}
+      <div class="rule-main">
+        <div class="name">${esc(entry.university)} · ${esc(entry.group)}</div>
+        <div class="desc">${esc(passSummary)}</div>
+        <div class="meta">适用周期：${entry.history[0].year} 年招生 · ${esc(entry.sourceLabel)} · 更新于 ${entry.sourceUpdated}</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ============================================================
+   8. RENDER: candidate cards
+   ============================================================ */
+function diffCell(diff){
+  if(diff==null) return "—";
+  const cls = diff>=0 ? "diff-pos" : "diff-neg";
+  const word = diff>=0 ? "靠前" : "靠后";
+  return `<td class="${cls}">${word} ${fmt(Math.abs(diff))}</td>`;
+}
+
+function renderCandidates(){
+  const {results, auditRows} = runFilterAndScore();
+  renderRuleAudit(auditRows);
+
+  let filtered = results.filter(r=> r.entry.strategyType === state.strategyFilter || true); 
+  // strategy toggle re-sorts by strategy relevance rather than hard-excluding, so both columns stay populated
+  let list = results.slice();
+
+  if(state.strategyFilter === "院校优先"){
+    list.sort((a,b)=> (b.entry.tags.length - a.entry.tags.length) || ((b.ev.pct||0)-(a.ev.pct||0)));
+  } else {
+    list.sort((a,b)=> (a.entry.majorSoftMiss?1:0) - (b.entry.majorSoftMiss?1:0) || ((b.ev.pct||0)-(a.ev.pct||0)));
+  }
+  if(state.sortMode==="prob_desc"){ list.sort((a,b)=>(b.ev.pct||0)-(a.ev.pct||0)); }
+  else if(state.sortMode==="prob_asc"){ list.sort((a,b)=>(a.ev.pct||0)-(b.ev.pct||0)); }
+
+  state.prevCandidates = state.candidates;
+  state.candidates = list;
+
+  const grid = $("#candGrid");
+
+  if(!list.length){
+    let reason = "没有找到同时满足全部硬性条件的候选院校。";
+    if(!state.profile.rank && !state.profile.score) reason = "缺少分数或位次，暂时无法计算录取把握，请先补充。";
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1;">
+      <div class="big">暂无符合条件的候选</div>
+      ${esc(reason)} 可以尝试放宽专业关键词、城市偏好或学费预算，或点击"修改条件"调整分数/位次后重试。
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(({entry, ev})=>{
+    const cat = ev.pct!=null ? probCategory(ev.pct) : {label:"待计算", cls:"prob-wen"};
+    const histRows = entry.history.map(h=>{
+      const d = state.profile.rank!=null ? (h.minRank - state.profile.rank) : null;
+      return `<tr><td>${h.year}</td><td>${h.plan}</td><td>${h.minScore} / ${fmt(h.minRank)}</td>${diffCell(d)}</tr>`;
+    }).join("");
+
+    return `<div class="cand-card" data-id="${entry.id}">
+      <div class="cand-top">
+        <div>
+          <div class="cand-strategy">${entry.strategyType==="院校优先" ? "◎ 院校优先" : "▤ 专业优先"}</div>
+          <div class="cand-name">${esc(entry.university)}</div>
+          <div class="cand-loc">${esc(entry.city)} · ${esc(entry.group)}</div>
+        </div>
+        <div class="prob-badge ${cat.cls}">
+          <div class="pct">${ev.pct!=null? ev.pct+'%' : '—'}</div>
+          <div class="lbl">${cat.label}</div>
+          <div class="sub">参考概率</div>
+        </div>
+      </div>
+
+      <div class="tag-row">${entry.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+
+      <div class="stat-row">
+        <div class="stat"><span class="k">招生代码</span><span class="v">${entry.code}</span></div>
+        <div class="stat"><span class="k">选科要求</span><span class="v">${entry.subjectsRequired.join("+")}</span></div>
+        <div class="stat"><span class="k">学制/学费</span><span class="v">${entry.duration} · ${entry.tuition}元/年</span></div>
+      </div>
+
+      <table class="hist">
+        <thead><tr><th>年份</th><th>计划</th><th>最低分/位次</th><th>位次差</th></tr></thead>
+        <tbody>${histRows}</tbody>
+      </table>
+
+      <div class="why-box"><b>为什么推荐：</b>${esc(entry.why)}</div>
+
+      <details class="rule"><summary>需要注意</summary><div class="body">${esc(entry.caution)}</div></details>
+      <details class="rule"><summary>查看核验依据</summary><div class="body">
+        ${ev.rules.map(r=> `${r.pass?'✓':'✕'} ${esc(r.desc)}`).join("<br>")}
+      </div></details>
+
+      <div class="src-row">
+        <span>${esc(entry.sourceLabel)}</span>
+        <span>更新于 ${entry.sourceUpdated}</span>
+      </div>
+
+      <div class="cand-actions">
+        <button class="btn btn-outline btn-sm remove-cand" data-id="${entry.id}">从方案中移除</button>
+      </div>
+    </div>`;
+  }).join("");
+
+  $all(".remove-cand").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      const id = b.getAttribute("data-id");
+      state.candidates = state.candidates.filter(c=>c.entry.id!==id);
+      const card = grid.querySelector(`.cand-card[data-id="${id}"]`);
+      if(card) card.remove();
+      renderPlan();
+    });
+  });
+}
+
+/* ============================================================
+   9. RENDER: plan + timeline + version diff
+   ============================================================ */
+function renderPlan(){
+  const list = state.candidates;
+  const tl = $("#timelineList");
+  if(!list.length){
+    tl.innerHTML = `<li><div class="date">—</div><div class="title">暂无可规划的候选</div><div class="desc">请先在上方确认至少一个候选院校专业组。</div></li>`;
+  } else {
+    const top3 = list.slice(0,3);
+    const items = [
+      {date:"现在", title:"核对官方数据与最新一分一段表", desc:"确认所选省份、年份的位次口径与本页示例数据结构一致后，替换为官方最新数据。"},
+      ...top3.map((c,i)=>({
+        date:`志愿位序 ${i+1}`,
+        title:`${c.entry.university} · ${c.entry.group}`,
+        desc:`参考概率 ${c.ev.pct}%（${probCategory(c.ev.pct).label}），学费 ${c.entry.tuition} 元/年。`
+      })),
+      {date:"截止前", title:"确认志愿并留存回执", desc:"在正式志愿填报系统中完成提交，并保存提交回执与截图。"}
+    ];
+    tl.innerHTML = items.map(it=>`<li><div class="date">${esc(it.date)}</div><div class="title">${esc(it.title)}</div><div class="desc">${esc(it.desc)}</div></li>`).join("");
+  }
+
+  renderVersionDiff();
+}
+
+function renderVersionDiff(){
+  const area = $("#diffArea");
+  const prev = state.prevCandidates;
+  const curr = state.candidates;
+  $("#versionLabel").textContent = `版本 v${state.versionN}` + (prev? "（较上一版本）" : "（尚未修改）");
+
+  if(!prev){ area.innerHTML = `<div class="diff-box">这是第一版方案，修改条件后此处会显示变化。</div>`; return; }
+
+  const prevIds = new Set(prev.map(c=>c.entry.id));
+  const currIds = new Set(curr.map(c=>c.entry.id));
+  const added = curr.filter(c=>!prevIds.has(c.entry.id));
+  const removed = prev.filter(c=>!currIds.has(c.entry.id));
+  const changed = curr.filter(c=>{
+    const old = prev.find(p=>p.entry.id===c.entry.id);
+    return old && old.ev.pct!=null && c.ev.pct!=null && old.ev.pct !== c.ev.pct;
+  });
+
+  let html = `<div class="diff-box">`;
+  if(!added.length && !removed.length && !changed.length){
+    html += `本次修改未改变候选列表。`;
+  } else {
+    added.forEach(c=> html += `<div class="diff-line add">+ 新增 ${esc(c.entry.university)}（${c.ev.pct}% ${probCategory(c.ev.pct).label}）</div>`);
+    removed.forEach(c=> html += `<div class="diff-line remove">− 剔除 ${esc(c.entry.university)}（不再满足条件）</div>`);
+    changed.forEach(c=>{
+      const old = prev.find(p=>p.entry.id===c.entry.id);
+      html += `<div class="diff-line chg">± ${esc(c.entry.university)} 概率 ${old.ev.pct}% → ${c.ev.pct}%</div>`;
+    });
+  }
+  html += `</div>`;
+  area.innerHTML = html;
+}
+
+/* ============================================================
+   10. EXPORT
+   ============================================================ */
+function exportPlan(){
+  const p = state.profile;
+  const lines = [];
+  lines.push("志愿领航 Agent · 志愿方案导出（示例数据，仅供演示）");
+  lines.push("生成时间：" + new Date().toLocaleString("zh-CN"));
+  lines.push("");
+  lines.push("【考生条件】");
+  lines.push(`省份：${p.province||'—'}　年份：${p.year||'—'}　类别：${p.track||'—'}`);
+  lines.push(`选科：${(p.subjects||[]).join('+')||'—'}　分数：${p.score||'—'}　位次：${p.rank||'—'}`);
+  lines.push(`专业关键词：${p.majorKeyword||'—'}　学费上限：${p.budgetMax? p.budgetMax+'元/年' : '不限'}`);
+  lines.push("");
+  lines.push("【方案候选】（按当前排序）");
+  state.candidates.forEach((c,i)=>{
+    lines.push(`${i+1}. ${c.entry.university} · ${c.entry.group} —— 参考概率 ${c.ev.pct}%（${probCategory(c.ev.pct).label}）`);
+    lines.push(`   招生代码：${c.entry.code}　学费：${c.entry.tuition}元/年　来源：${c.entry.sourceLabel}`);
+  });
+  lines.push("");
+  lines.push("【免责说明】本导出文件基于演示用示例数据生成，正式填报前请以各省教育考试院公布的官方数据为准。");
+
+  const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "志愿方案导出.txt";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ============================================================
+   11. FLOW ORCHESTRATION
+   ============================================================ */
+function showSection(id){ const el = document.getElementById(id); if(el) el.style.display=""; }
+
+function runPipeline(isEdit){
+  setStep(2); // 获取官方信息 -> immediately proceed through filter for demo speed
+  setTimeout(()=>{
+    setStep(3);
+    showSection("stepRules");
+    showSection("stepCandidates");
+    showSection("stepPlan");
+    if(isEdit){ state.versionN += 1; }
+    renderCandidates();
+    setStep( state.candidates.length ? 4 : 3 );
+    renderPlan();
+    saveProfile();
+  }, 250);
+}
+
+async function handleSend(){
+  const input = $("#chatInput");
+  const text = input.value.trim();
+  if(!text) return;
+  addMsg("user", text);
+  input.value = "";
+  $("#sendBtn").disabled = true;
+  addMsg("sys", "Agent 正在核对条件…");
+  try{
+    const parsed = await callAgent(text);
+    // remove the last "sys" placeholder
+    const log = $("#chatLog");
+    const sysMsgs = log.querySelectorAll(".msg.sys");
+    if(sysMsgs.length) sysMsgs[sysMsgs.length-1].remove();
+
+    state.profile = Object.assign({}, state.profile, parsed.profile||{});
+    state.conflicts = parsed.conflicts||[];
+    addMsg("agent", parsed.reply || "已更新条件。");
+    renderFieldPanel();
+    fillEditFormFromState();
+
+    if(parsed.ready && requiredMissingList(state.profile).length===0){
+      runPipeline(false);
+    }
+  }catch(e){
+    const log = $("#chatLog");
+    const sysMsgs = log.querySelectorAll(".msg.sys");
+    if(sysMsgs.length) sysMsgs[sysMsgs.length-1].remove();
+    addMsg("agent", "抱歉，Agent 服务暂时无法响应（" + e.message + "）。你也可以点击「修改条件」，用右侧表单直接填写。");
+  }
+  $("#sendBtn").disabled = false;
+}
+
+/* ============================================================
+   12. EVENTS
+   ============================================================ */
+$("#sendBtn").addEventListener("click", handleSend);
+$("#chatInput").addEventListener("keydown", (e)=>{
+  if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); handleSend(); }
+});
+$all("[data-fill]").forEach(b=>{
+  b.addEventListener("click", ()=>{ $("#chatInput").value = b.getAttribute("data-fill"); $("#chatInput").focus(); });
+});
+$("#resetBtn").addEventListener("click", ()=>{
+  state = Object.assign(state, { profile:{ province:null, year:2026, track:null, subjects:null, score:null, rank:null, majorKeyword:null, cityPref:null, budgetMax:null }, missing:[], conflicts:[], chatHistory:[], confirmed:false, candidates:[], prevCandidates:null, versionN:1 });
+  $("#chatLog").innerHTML = "";
+  addMsg("agent", "已重新开始。请告诉我你的省份、类别、分数或位次、选科组合和想了解的专业方向。");
+  renderFieldPanel();
+  ["stepRules","stepCandidates","stepPlan"].forEach(id=>{ document.getElementById(id).style.display="none"; });
+  setStep(0);
+});
+
+$("#editCondBtn").addEventListener("click", ()=>{ $("#editForm").classList.toggle("open"); });
+$("#viewBasisBtn").addEventListener("click", ()=>{
+  document.getElementById("stepRules").style.display = "";
+  document.getElementById("stepRules").scrollIntoView({behavior:"smooth", block:"start"});
+});
+$("#confirmBtn").addEventListener("click", ()=>{
+  state.confirmed = true;
+  addMsg("sys", "条件已确认，正在生成方案…");
+  runPipeline(false);
+  renderFieldPanel();
+});
+
+$("#applyEditBtn").addEventListener("click", ()=>{
+  const subjVal = $("#f_subjects").value.split(",");
+  state.profile = Object.assign({}, state.profile, {
+    province: $("#f_province").value,
+    year: Number($("#f_year").value)||state.profile.year,
+    track: $("#f_track").value,
+    subjects: subjVal,
+    score: $("#f_score").value ? Number($("#f_score").value) : null,
+    rank: $("#f_rank").value ? Number($("#f_rank").value) : null,
+    majorKeyword: $("#f_major").value || null,
+    budgetMax: $("#f_budget").value ? Number($("#f_budget").value) : null
+  });
+  renderFieldPanel();
+  addMsg("sys", "已通过表单更新条件，正在重新计算方案…");
+  if(requiredMissingList(state.profile).length===0){ runPipeline(true); }
+});
+
+$all("#strategySeg button").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    $all("#strategySeg button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    state.strategyFilter = b.getAttribute("data-strategy");
+    renderCandidates(); renderPlan();
+  });
+});
+$all("#sortSeg button").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    $all("#sortSeg button").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    state.sortMode = b.getAttribute("data-sort");
+    renderCandidates(); renderPlan();
+  });
+});
+$("#exportBtn").addEventListener("click", exportPlan);
+
+/* ============================================================
+   13. INIT
+   ============================================================ */
+async function init(){
+  await loadProfileFromStorage();
+  renderStepper();
+  renderFieldPanel();
+  fillEditFormFromState();
+  addMsg("agent", "你好，我是志愿领航 Agent。请告诉我你的省份、类别（物理/历史）、分数或位次、选科组合，以及想了解的专业方向，我会先核对资格再帮你比较方案。");
+  if(state.profile.province){
+    addMsg("sys", "已恢复上次填写的条件。");
+    if(requiredMissingList(state.profile).length===0){ runPipeline(false); }
+  }
+}
+init();
+
+})();
+</script>
+</body>
+</html>

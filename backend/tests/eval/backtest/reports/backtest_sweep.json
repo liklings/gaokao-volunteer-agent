@@ -1,0 +1,302 @@
+[
+  {
+    "history_strategy": "latest",
+    "baowen_ratio": 0.2,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 256,
+          "rate": 0.9531
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.2952
+        },
+        "wen": {
+          "picks": 253,
+          "rate": 0.6482
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "latest",
+    "baowen_ratio": 0.3,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 237,
+          "rate": 0.9578
+        },
+        "chong": {
+          "picks": 208,
+          "rate": 0.2933
+        },
+        "wen": {
+          "picks": 275,
+          "rate": 0.7091
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.8875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "latest",
+    "baowen_ratio": 0.4,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 227,
+          "rate": 0.9736
+        },
+        "chong": {
+          "picks": 208,
+          "rate": 0.2933
+        },
+        "wen": {
+          "picks": 285,
+          "rate": 0.7404
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.8875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "latest",
+    "baowen_ratio": 0.5,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 221,
+          "rate": 0.9864
+        },
+        "chong": {
+          "picks": 209,
+          "rate": 0.2919
+        },
+        "wen": {
+          "picks": 291,
+          "rate": 0.7663
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min2",
+    "baowen_ratio": 0.2,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 248,
+          "rate": 0.9435
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3762
+        },
+        "wen": {
+          "picks": 256,
+          "rate": 0.7188
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min2",
+    "baowen_ratio": 0.3,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 226,
+          "rate": 0.9602
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3762
+        },
+        "wen": {
+          "picks": 279,
+          "rate": 0.767
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.8875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min2",
+    "baowen_ratio": 0.4,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 216,
+          "rate": 0.9769
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3762
+        },
+        "wen": {
+          "picks": 286,
+          "rate": 0.7762
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.8875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min2",
+    "baowen_ratio": 0.5,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 208,
+          "rate": 0.9904
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3714
+        },
+        "wen": {
+          "picks": 291,
+          "rate": 0.7938
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min3",
+    "baowen_ratio": 0.2,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 248,
+          "rate": 0.9435
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3762
+        },
+        "wen": {
+          "picks": 256,
+          "rate": 0.7188
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min3",
+    "baowen_ratio": 0.3,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 226,
+          "rate": 0.9602
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3762
+        },
+        "wen": {
+          "picks": 279,
+          "rate": 0.767
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.8875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min3",
+    "baowen_ratio": 0.4,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 216,
+          "rate": 0.9769
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3762
+        },
+        "wen": {
+          "picks": 286,
+          "rate": 0.7762
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.8875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  },
+  {
+    "history_strategy": "min3",
+    "baowen_ratio": 0.5,
+    "overall": {
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 208,
+          "rate": 0.9904
+        },
+        "chong": {
+          "picks": 210,
+          "rate": 0.3714
+        },
+        "wen": {
+          "picks": 291,
+          "rate": 0.7938
+        }
+      },
+      "plan_not_slid_rate": 0.9868,
+      "three_tier_coverage": 0.875,
+      "pass_line": 0.995,
+      "baowen_pick_pass": false,
+      "plan_not_slid_pass": false
+    }
+  }
+]

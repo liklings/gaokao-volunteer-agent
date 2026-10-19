@@ -1,0 +1,419 @@
+{
+  "retriever": "bm25-bigram",
+  "k": 5,
+  "n_chunks": 33,
+  "overall": {
+    "n": 38,
+    "hit@1": 0.868,
+    "hit@3": 0.947,
+    "hit@5": 0.974,
+    "mrr": 0.91,
+    "doc_top1": 1.0,
+    "evidence_intact": 1.0
+  },
+  "by_tag": {
+    "numeric": {
+      "n": 10,
+      "hit@1": 0.9,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.95,
+      "doc_top1": 1.0,
+      "evidence_intact": 1.0
+    },
+    "paraphrase": {
+      "n": 6,
+      "hit@1": 0.667,
+      "hit@3": 0.667,
+      "hit@5": 0.833,
+      "mrr": 0.708,
+      "doc_top1": 1.0,
+      "evidence_intact": 1.0
+    },
+    "term": {
+      "n": 22,
+      "hit@1": 0.909,
+      "hit@3": 1.0,
+      "hit@5": 1.0,
+      "mrr": 0.947,
+      "doc_top1": 1.0,
+      "evidence_intact": 1.0
+    }
+  },
+  "negative_separation": {
+    "auc_top1_pos_vs_neg": 0.8947368421052632,
+    "max_negative_top1": 17.036821590791824,
+    "answerable_passing_if_threshold_is_max_negative": 0.684,
+    "mean_top1_pos": 25.2511,
+    "mean_top1_neg": 9.6583
+  },
+  "rows": [
+    {
+      "id": "art-01",
+      "tag": "term",
+      "rank": 3,
+      "top1_score": 6.7749,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p3"
+    },
+    {
+      "id": "art-02",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 51.5577,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    },
+    {
+      "id": "art-03",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 41.9355,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    },
+    {
+      "id": "art-04",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 28.6803,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p10"
+    },
+    {
+      "id": "art-05",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 40.6594,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p10"
+    },
+    {
+      "id": "art-06",
+      "tag": "numeric",
+      "rank": 2,
+      "top1_score": 22.0606,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p10"
+    },
+    {
+      "id": "art-07",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 22.6125,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p3"
+    },
+    {
+      "id": "art-08",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 30.0862,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p6"
+    },
+    {
+      "id": "art-09",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 13.7398,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p6"
+    },
+    {
+      "id": "art-10",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 22.8124,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p6"
+    },
+    {
+      "id": "art-11",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 25.0954,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p6"
+    },
+    {
+      "id": "art-12",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 48.6669,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    },
+    {
+      "id": "art-13",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 15.8865,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p11"
+    },
+    {
+      "id": "art-14",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 15.4285,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p7"
+    },
+    {
+      "id": "art-15",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 22.3429,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p7"
+    },
+    {
+      "id": "art-16",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 30.3802,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p10"
+    },
+    {
+      "id": "art-17",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 29.7265,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    },
+    {
+      "id": "art-18",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 12.3604,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p3"
+    },
+    {
+      "id": "art-19",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 23.0394,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p3"
+    },
+    {
+      "id": "art-20",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 29.7534,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p1"
+    },
+    {
+      "id": "art-21",
+      "tag": "paraphrase",
+      "rank": 4,
+      "top1_score": 7.9488,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p7"
+    },
+    {
+      "id": "art-22",
+      "tag": "paraphrase",
+      "rank": 1,
+      "top1_score": 14.6188,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    },
+    {
+      "id": "art-23",
+      "tag": "paraphrase",
+      "rank": null,
+      "top1_score": 11.1418,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p11"
+    },
+    {
+      "id": "art-24",
+      "tag": "paraphrase",
+      "rank": 1,
+      "top1_score": 10.562,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p13"
+    },
+    {
+      "id": "voc-01",
+      "tag": "term",
+      "rank": 2,
+      "top1_score": 16.1,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p5"
+    },
+    {
+      "id": "voc-02",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 29.1554,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-03",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 36.7802,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p3"
+    },
+    {
+      "id": "voc-04",
+      "tag": "numeric",
+      "rank": 1,
+      "top1_score": 32.8507,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-05",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 24.565,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p3"
+    },
+    {
+      "id": "voc-06",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 18.0974,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-07",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 40.2318,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-08",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 27.3951,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-09",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 22.8108,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p6"
+    },
+    {
+      "id": "voc-10",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 16.8511,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-11",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 23.1401,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p5"
+    },
+    {
+      "id": "voc-12",
+      "tag": "term",
+      "rank": 1,
+      "top1_score": 61.3383,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p1"
+    },
+    {
+      "id": "voc-13",
+      "tag": "paraphrase",
+      "rank": 1,
+      "top1_score": 10.8423,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p4"
+    },
+    {
+      "id": "voc-14",
+      "tag": "paraphrase",
+      "rank": 1,
+      "top1_score": 21.5131,
+      "evidence_intact": true,
+      "doc_top1_correct": true,
+      "top1_doc_page": "江苏省高等职业院校考试招生制度改革实施方案.pdf#p3"
+    },
+    {
+      "id": "neg-01",
+      "tag": "negative",
+      "top1_score": 17.0368,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p1"
+    },
+    {
+      "id": "neg-02",
+      "tag": "negative",
+      "top1_score": 10.4736,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    },
+    {
+      "id": "neg-03",
+      "tag": "negative",
+      "top1_score": 8.7226,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p10"
+    },
+    {
+      "id": "neg-04",
+      "tag": "negative",
+      "top1_score": 2.4003,
+      "top1_doc_page": "江苏省2025年普通高校艺术类专业招生办法.pdf#p8"
+    }
+  ],
+  "chunking": "structured"
+}

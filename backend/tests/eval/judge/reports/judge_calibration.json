@@ -1,0 +1,21 @@
+{
+  "labels": 32,
+  "scored": 32,
+  "errors": 0,
+  "agree": 31,
+  "agreement": 0.969,
+  "false_pass": 0,
+  "false_fail": 1,
+  "reliable": true,
+  "disagreements": [
+    {
+      "item": "p-ready-optional-ask",
+      "key": "ask_fit",
+      "human": true,
+      "judge": false,
+      "score": 1,
+      "reason": "背景中必填项已齐，回复却额外追问中外合作办学或专项计划，属于多余追问。"
+    }
+  ],
+  "judge_model": "gemini-3.1-flash-lite"
+}

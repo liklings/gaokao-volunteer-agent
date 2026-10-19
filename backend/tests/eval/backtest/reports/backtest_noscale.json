@@ -1,0 +1,600 @@
+{
+  "overall": {
+    "tier_admit_rate": {
+      "baowen": {
+        "picks": 530,
+        "rate": 0.917
+      },
+      "chong": {
+        "picks": 415,
+        "rate": 0.3446
+      },
+      "wen": {
+        "picks": 511,
+        "rate": 0.7202
+      }
+    },
+    "plan_not_slid_rate": 0.9803,
+    "three_tier_coverage": 0.8875,
+    "pass_line": 0.995,
+    "baowen_pick_pass": false,
+    "plan_not_slid_pass": false
+  },
+  "by_year_track": [
+    {
+      "year": 2025,
+      "track": "物理类",
+      "students": 40,
+      "judged": 40,
+      "plan_not_slid_rate": 1.0,
+      "three_tier_coverage": 0.925,
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 138,
+          "rate": 0.9855,
+          "no_truth": 20
+        },
+        "chong": {
+          "picks": 101,
+          "rate": 0.5149,
+          "no_truth": 6
+        },
+        "wen": {
+          "picks": 128,
+          "rate": 0.8359,
+          "no_truth": 7
+        }
+      },
+      "baowen_by_rank_band": {
+        "1万-3万": {
+          "picks": 18,
+          "rate": 1.0
+        },
+        "2千-1万": {
+          "picks": 37,
+          "rate": 1.0
+        },
+        "<2千": {
+          "picks": 61,
+          "rate": 1.0
+        },
+        ">3万": {
+          "picks": 22,
+          "rate": 0.9091
+        }
+      },
+      "baowen_failure_examples": [
+        {
+          "student_rank": 87297,
+          "group_id": "sc6205-2",
+          "school": "重庆医科大学",
+          "truth_min_rank": 82293,
+          "history_min_ranks": {
+            "2024": 120390,
+            "2023": 39519
+          },
+          "diff_used": 33093
+        },
+        {
+          "student_rank": 100000,
+          "group_id": "sc6205-2",
+          "school": "重庆医科大学",
+          "truth_min_rank": 82293,
+          "history_min_ranks": {
+            "2024": 120390,
+            "2023": 39519
+          },
+          "diff_used": 20390
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "track": "历史类",
+      "students": 40,
+      "judged": 36,
+      "plan_not_slid_rate": 0.9722,
+      "three_tier_coverage": 0.85,
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 115,
+          "rate": 0.9304,
+          "no_truth": 2
+        },
+        "chong": {
+          "picks": 105,
+          "rate": 0.4381,
+          "no_truth": 6
+        },
+        "wen": {
+          "picks": 125,
+          "rate": 0.824,
+          "no_truth": 7
+        }
+      },
+      "baowen_by_rank_band": {
+        "1万-3万": {
+          "picks": 24,
+          "rate": 0.7917
+        },
+        "2千-1万": {
+          "picks": 36,
+          "rate": 0.9444
+        },
+        "<2千": {
+          "picks": 48,
+          "rate": 1.0
+        },
+        ">3万": {
+          "picks": 7,
+          "rate": 0.8571
+        }
+      },
+      "baowen_failure_examples": [
+        {
+          "student_rank": 6607,
+          "group_id": "sc2112-1",
+          "school": "上海大学",
+          "truth_min_rank": 6527,
+          "history_min_ranks": {
+            "2024": 9223
+          },
+          "diff_used": 2616
+        },
+        {
+          "student_rank": 7568,
+          "group_id": "sc2112-1",
+          "school": "上海大学",
+          "truth_min_rank": 6527,
+          "history_min_ranks": {
+            "2024": 9223
+          },
+          "diff_used": 1655
+        },
+        {
+          "student_rank": 17100,
+          "group_id": "sc4309-2",
+          "school": "哈尔滨医科大学",
+          "truth_min_rank": 15247,
+          "history_min_ranks": {
+            "2023": 26285
+          },
+          "diff_used": 9185
+        },
+        {
+          "student_rank": 19588,
+          "group_id": "sc4309-2",
+          "school": "哈尔滨医科大学",
+          "truth_min_rank": 15247,
+          "history_min_ranks": {
+            "2023": 26285
+          },
+          "diff_used": 6697
+        },
+        {
+          "student_rank": 25704,
+          "group_id": "sc6210-1",
+          "school": "重庆师范大学",
+          "truth_min_rank": 25583,
+          "history_min_ranks": {
+            "2024": 31429
+          },
+          "diff_used": 5725
+        },
+        {
+          "student_rank": 29444,
+          "group_id": "sc3204-3",
+          "school": "天津师范大学",
+          "truth_min_rank": 29352,
+          "history_min_ranks": {
+            "2024": 43539
+          },
+          "diff_used": 14095
+        },
+        {
+          "student_rank": 29444,
+          "group_id": "sc5602-1",
+          "school": "海南师范大学",
+          "truth_min_rank": 29352,
+          "history_min_ranks": {
+            "2024": 38454
+          },
+          "diff_used": 9010
+        },
+        {
+          "student_rank": 33728,
+          "group_id": "sc3204-3",
+          "school": "天津师范大学",
+          "truth_min_rank": 29352,
+          "history_min_ranks": {
+            "2024": 43539
+          },
+          "diff_used": 9811
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "track": "物理类",
+      "students": 40,
+      "judged": 40,
+      "plan_not_slid_rate": 1.0,
+      "three_tier_coverage": 0.95,
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 161,
+          "rate": 0.8571,
+          "no_truth": 0
+        },
+        "chong": {
+          "picks": 102,
+          "rate": 0.2745,
+          "no_truth": 2
+        },
+        "wen": {
+          "picks": 133,
+          "rate": 0.5789,
+          "no_truth": 2
+        }
+      },
+      "baowen_by_rank_band": {
+        "1万-3万": {
+          "picks": 24,
+          "rate": 0.5833
+        },
+        "2千-1万": {
+          "picks": 37,
+          "rate": 0.973
+        },
+        "<2千": {
+          "picks": 73,
+          "rate": 0.9452
+        },
+        ">3万": {
+          "picks": 27,
+          "rate": 0.7037
+        }
+      },
+      "baowen_failure_examples": [
+        {
+          "student_rank": 573,
+          "group_id": "sc2103-6",
+          "school": "上海交通大学",
+          "truth_min_rank": 531,
+          "history_min_ranks": {
+            "2023": 1049
+          },
+          "diff_used": 476
+        },
+        {
+          "student_rank": 656,
+          "group_id": "sc2103-6",
+          "school": "上海交通大学",
+          "truth_min_rank": 531,
+          "history_min_ranks": {
+            "2023": 1049
+          },
+          "diff_used": 393
+        },
+        {
+          "student_rank": 752,
+          "group_id": "sc2103-6",
+          "school": "上海交通大学",
+          "truth_min_rank": 531,
+          "history_min_ranks": {
+            "2023": 1049
+          },
+          "diff_used": 297
+        },
+        {
+          "student_rank": 861,
+          "group_id": "sc2103-6",
+          "school": "上海交通大学",
+          "truth_min_rank": 531,
+          "history_min_ranks": {
+            "2023": 1049
+          },
+          "diff_used": 188
+        },
+        {
+          "student_rank": 9931,
+          "group_id": "sc4301-7",
+          "school": "哈尔滨工业大学",
+          "truth_min_rank": 9145,
+          "history_min_ranks": {
+            "2023": 12050
+          },
+          "diff_used": 2119
+        },
+        {
+          "student_rank": 14928,
+          "group_id": "sc4201-20",
+          "school": "吉林大学",
+          "truth_min_rank": 9941,
+          "history_min_ranks": {
+            "2023": 36407
+          },
+          "diff_used": 21479
+        },
+        {
+          "student_rank": 14928,
+          "group_id": "sc4201-16",
+          "school": "吉林大学",
+          "truth_min_rank": 13037,
+          "history_min_ranks": {
+            "2023": 20903
+          },
+          "diff_used": 5975
+        },
+        {
+          "student_rank": 17100,
+          "group_id": "sc4201-20",
+          "school": "吉林大学",
+          "truth_min_rank": 9941,
+          "history_min_ranks": {
+            "2023": 36407
+          },
+          "diff_used": 19307
+        },
+        {
+          "student_rank": 17100,
+          "group_id": "sc4201-16",
+          "school": "吉林大学",
+          "truth_min_rank": 13037,
+          "history_min_ranks": {
+            "2023": 20903
+          },
+          "diff_used": 3803
+        },
+        {
+          "student_rank": 19588,
+          "group_id": "sc4201-20",
+          "school": "吉林大学",
+          "truth_min_rank": 9941,
+          "history_min_ranks": {
+            "2023": 36407
+          },
+          "diff_used": 16819
+        },
+        {
+          "student_rank": 19588,
+          "group_id": "sc7141-8",
+          "school": "西北农林科技大学",
+          "truth_min_rank": 17343,
+          "history_min_ranks": {
+            "2023": 26161
+          },
+          "diff_used": 6573
+        },
+        {
+          "student_rank": 22438,
+          "group_id": "sc4201-20",
+          "school": "吉林大学",
+          "truth_min_rank": 9941,
+          "history_min_ranks": {
+            "2023": 36407
+          },
+          "diff_used": 13969
+        },
+        {
+          "student_rank": 25704,
+          "group_id": "sc4201-20",
+          "school": "吉林大学",
+          "truth_min_rank": 9941,
+          "history_min_ranks": {
+            "2023": 36407
+          },
+          "diff_used": 10703
+        },
+        {
+          "student_rank": 25704,
+          "group_id": "sc1104-5",
+          "school": "南京理工大学",
+          "truth_min_rank": 24905,
+          "history_min_ranks": {
+            "2023": 31135
+          },
+          "diff_used": 5431
+        },
+        {
+          "student_rank": 29444,
+          "group_id": "sc4201-20",
+          "school": "吉林大学",
+          "truth_min_rank": 9941,
+          "history_min_ranks": {
+            "2023": 36407
+          },
+          "diff_used": 6963
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "track": "历史类",
+      "students": 40,
+      "judged": 36,
+      "plan_not_slid_rate": 0.9444,
+      "three_tier_coverage": 0.825,
+      "tier_admit_rate": {
+        "baowen": {
+          "picks": 116,
+          "rate": 0.9052,
+          "no_truth": 2
+        },
+        "chong": {
+          "picks": 107,
+          "rate": 0.1589,
+          "no_truth": 4
+        },
+        "wen": {
+          "picks": 125,
+          "rate": 0.648,
+          "no_truth": 6
+        }
+      },
+      "baowen_by_rank_band": {
+        "1万-3万": {
+          "picks": 23,
+          "rate": 0.8261
+        },
+        "2千-1万": {
+          "picks": 37,
+          "rate": 0.9459
+        },
+        "<2千": {
+          "picks": 48,
+          "rate": 0.9583
+        },
+        ">3万": {
+          "picks": 8,
+          "rate": 0.625
+        }
+      },
+      "baowen_failure_examples": [
+        {
+          "student_rank": 500,
+          "group_id": "sc5201-3",
+          "school": "武汉大学",
+          "truth_min_rank": 480,
+          "history_min_ranks": {
+            "2023": 631
+          },
+          "diff_used": 131
+        },
+        {
+          "student_rank": 1482,
+          "group_id": "sc6101-2",
+          "school": "四川大学",
+          "truth_min_rank": 1341,
+          "history_min_ranks": {
+            "2023": 1907
+          },
+          "diff_used": 425
+        },
+        {
+          "student_rank": 3350,
+          "group_id": "sc4131-1",
+          "school": "大连理工大学",
+          "truth_min_rank": 3226,
+          "history_min_ranks": {
+            "2023": 4092
+          },
+          "diff_used": 742
+        },
+        {
+          "student_rank": 3350,
+          "group_id": "sc4101-1",
+          "school": "东北大学",
+          "truth_min_rank": 3226,
+          "history_min_ranks": {
+            "2023": 4245
+          },
+          "diff_used": 895
+        },
+        {
+          "student_rank": 17100,
+          "group_id": "sc4102-5",
+          "school": "辽宁大学",
+          "truth_min_rank": 14930,
+          "history_min_ranks": {
+            "2023": 21584
+          },
+          "diff_used": 4484
+        },
+        {
+          "student_rank": 25704,
+          "group_id": "sc2691-1",
+          "school": "山东第一医科大学",
+          "truth_min_rank": 25038,
+          "history_min_ranks": {
+            "2023": 32408
+          },
+          "diff_used": 6704
+        },
+        {
+          "student_rank": 25704,
+          "group_id": "sc2691-2",
+          "school": "山东第一医科大学",
+          "truth_min_rank": 25038,
+          "history_min_ranks": {
+            "2023": 31466
+          },
+          "diff_used": 5762
+        },
+        {
+          "student_rank": 29444,
+          "group_id": "sc5532-1",
+          "school": "广西民族大学",
+          "truth_min_rank": 27733,
+          "history_min_ranks": {
+            "2023": 44268
+          },
+          "diff_used": 14824
+        },
+        {
+          "student_rank": 33728,
+          "group_id": "sc7303-1",
+          "school": "青海师范大学",
+          "truth_min_rank": 33213,
+          "history_min_ranks": {
+            "2023": 51747
+          },
+          "diff_used": 18019
+        },
+        {
+          "student_rank": 33728,
+          "group_id": "sc5532-1",
+          "school": "广西民族大学",
+          "truth_min_rank": 27733,
+          "history_min_ranks": {
+            "2023": 44268
+          },
+          "diff_used": 10540
+        },
+        {
+          "student_rank": 38636,
+          "group_id": "sc7303-1",
+          "school": "青海师范大学",
+          "truth_min_rank": 33213,
+          "history_min_ranks": {
+            "2023": 51747
+          },
+          "diff_used": 13111
+        }
+      ]
+    }
+  ],
+  "config": {
+    "years": [
+      2025,
+      2024,
+      2023
+    ],
+    "n_ranks": 40,
+    "rank_range": [
+      500,
+      100000
+    ],
+    "rank_scale": false,
+    "totals_by_year": {
+      "物理类": {
+        "2022": 195387,
+        "2023": 220455,
+        "2024": 245739,
+        "2025": 205975
+      },
+      "历史类": {
+        "2022": 102374,
+        "2023": 98659,
+        "2024": 92399,
+        "2025": 56398
+      }
+    },
+    "groups": 6967,
+    "years_in_data": [
+      2023,
+      2024,
+      2025
+    ]
+  }
+}

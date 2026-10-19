@@ -1,0 +1,312 @@
+{
+  "engine": "rapidocr",
+  "variants": {
+    "clean": {
+      "docs": [
+        {
+          "doc": "江苏省2025年普通高校艺术类专业招生办法.pdf",
+          "pages": 14,
+          "seconds": 58.4,
+          "char_accuracy": 0.9906,
+          "worst_page_cer": 0.0631,
+          "all_pages_ocr_triggered": true,
+          "key_fact_recall": 0.846,
+          "key_fact_recall_content_only": 0.962,
+          "key_facts_total": 26,
+          "key_facts_lost": [
+            "投档分=[（高考文化分÷文化满分）×0.5+（专业分÷专业满分）×0.5]×750",
+            "（高考文化分÷文化满分）×0.6+（专业分÷专业满分）×0.4",
+            "（高考文化分÷文化满分）×0.7+（专业分÷专业满分）×0.3",
+            "（高考文化分÷文化满分）×0.7+（专业分÷专业满分）×0.3"
+          ],
+          "per_page": [
+            {
+              "page": 1,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 2,
+              "cer": 0.0569,
+              "ocr": true
+            },
+            {
+              "page": 3,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 4,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 5,
+              "cer": 0.0631,
+              "ocr": true
+            },
+            {
+              "page": 6,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 7,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 8,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 9,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 10,
+              "cer": 0.0041,
+              "ocr": true
+            },
+            {
+              "page": 11,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 12,
+              "cer": 0.002,
+              "ocr": true
+            },
+            {
+              "page": 13,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 14,
+              "cer": 0.0,
+              "ocr": true
+            }
+          ]
+        },
+        {
+          "doc": "江苏省高等职业院校考试招生制度改革实施方案.pdf",
+          "pages": 8,
+          "seconds": 18.5,
+          "char_accuracy": 0.9991,
+          "worst_page_cer": 0.0025,
+          "all_pages_ocr_triggered": true,
+          "key_fact_recall": 0.867,
+          "key_fact_recall_content_only": 0.867,
+          "key_facts_total": 15,
+          "key_facts_lost": [
+            "公共基础知识+专业综合理论+专业基本技能",
+            "按照“科目组+学考专业类”进行平行志愿投档录取"
+          ],
+          "per_page": [
+            {
+              "page": 1,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 2,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 3,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 4,
+              "cer": 0.0025,
+              "ocr": true
+            },
+            {
+              "page": 5,
+              "cer": 0.0025,
+              "ocr": true
+            },
+            {
+              "page": 6,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 7,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 8,
+              "cer": 0.0,
+              "ocr": true
+            }
+          ]
+        }
+      ],
+      "end_to_end_bm25": {
+        "hit@5": 0.789,
+        "mrr": 0.742,
+        "evidence_intact": 0.842
+      }
+    },
+    "degraded": {
+      "docs": [
+        {
+          "doc": "江苏省2025年普通高校艺术类专业招生办法.pdf",
+          "pages": 14,
+          "seconds": 46.0,
+          "char_accuracy": 0.9952,
+          "worst_page_cer": 0.0592,
+          "all_pages_ocr_triggered": true,
+          "key_fact_recall": 0.846,
+          "key_fact_recall_content_only": 0.962,
+          "key_facts_total": 26,
+          "key_facts_lost": [
+            "投档分=[（高考文化分÷文化满分）×0.5+（专业分÷专业满分）×0.5]×750",
+            "（高考文化分÷文化满分）×0.6+（专业分÷专业满分）×0.4",
+            "（高考文化分÷文化满分）×0.7+（专业分÷专业满分）×0.3",
+            "（高考文化分÷文化满分）×0.7+（专业分÷专业满分）×0.3"
+          ],
+          "per_page": [
+            {
+              "page": 1,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 2,
+              "cer": 0.0592,
+              "ocr": true
+            },
+            {
+              "page": 3,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 4,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 5,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 6,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 7,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 8,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 9,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 10,
+              "cer": 0.0021,
+              "ocr": true
+            },
+            {
+              "page": 11,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 12,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 13,
+              "cer": 0.002,
+              "ocr": true
+            },
+            {
+              "page": 14,
+              "cer": 0.0,
+              "ocr": true
+            }
+          ]
+        },
+        {
+          "doc": "江苏省高等职业院校考试招生制度改革实施方案.pdf",
+          "pages": 8,
+          "seconds": 24.0,
+          "char_accuracy": 1.0,
+          "worst_page_cer": 0.0,
+          "all_pages_ocr_triggered": true,
+          "key_fact_recall": 1.0,
+          "key_fact_recall_content_only": 1.0,
+          "key_facts_total": 15,
+          "key_facts_lost": [],
+          "per_page": [
+            {
+              "page": 1,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 2,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 3,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 4,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 5,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 6,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 7,
+              "cer": 0.0,
+              "ocr": true
+            },
+            {
+              "page": 8,
+              "cer": 0.0,
+              "ocr": true
+            }
+          ]
+        }
+      ],
+      "end_to_end_bm25": {
+        "hit@5": 0.842,
+        "mrr": 0.783,
+        "evidence_intact": 0.895
+      }
+    }
+  }
+}

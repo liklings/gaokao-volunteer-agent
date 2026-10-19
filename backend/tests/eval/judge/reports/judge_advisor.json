@@ -1,0 +1,417 @@
+{
+  "scenarios": [
+    {
+      "name": "phys-top",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "phys-mid",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "phys-low",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "phys-med",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "hist-top",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "hist-mid",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "hist-low",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    },
+    {
+      "name": "phys-budget",
+      "error": null,
+      "agents": [
+        "retrieval"
+      ]
+    }
+  ],
+  "deterministic": {
+    "adv-phys-top": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": true,
+      "ungrounded": []
+    },
+    "adv-phys-mid": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": false,
+      "ungrounded": [
+        "双一流高水平大学"
+      ]
+    },
+    "adv-phys-low": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": true,
+      "ungrounded": []
+    },
+    "adv-phys-med": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": true,
+      "ungrounded": []
+    },
+    "adv-hist-top": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": true,
+      "ungrounded": []
+    },
+    "adv-hist-mid": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": false,
+      "discoveries_missing": [
+        "华北电力大学(保定)",
+        "中国矿业大学(北京)"
+      ],
+      "grounded_schools": true,
+      "ungrounded": []
+    },
+    "adv-hist-low": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": true,
+      "ungrounded": []
+    },
+    "adv-phys-budget": {
+      "no_probability": true,
+      "probability_hits": [],
+      "discoveries_mentioned": true,
+      "discoveries_missing": [],
+      "grounded_schools": false,
+      "ungrounded": [
+        "工程大学"
+      ]
+    }
+  },
+  "aggregate": {
+    "n_items": 8,
+    "n_error": 0,
+    "by_criterion": {
+      "grounded": {
+        "n": 8,
+        "mean": 5.0,
+        "pass_rate": 1.0
+      },
+      "discovery_value": {
+        "n": 7,
+        "mean": 5.0,
+        "pass_rate": 1.0
+      },
+      "rank_note": {
+        "n": 2,
+        "mean": 5.0,
+        "pass_rate": 1.0
+      },
+      "structure": {
+        "n": 8,
+        "mean": 5.0,
+        "pass_rate": 1.0
+      },
+      "helpful": {
+        "n": 8,
+        "mean": 5.0,
+        "pass_rate": 1.0
+      }
+    }
+  },
+  "min_pass_suggested": 0.8,
+  "worst": [],
+  "verdicts": [
+    {
+      "id": "adv-phys-top",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "所有院校、专业组及位次差数据均与工具结果完全一致，无编造信息。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了中国人民大学，明确了其985/211/双一流档次，并指出了其因地理位置可能被忽略的价值。"
+        },
+        "rank_note": {
+          "score": 5,
+          "applicable": true,
+          "reason": "针对哈尔滨工业大学(深圳)的特殊说明，完整转述了位次折算逻辑，未误导用户。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "按冲刺、稳妥、保底三档清晰分类，并对每档含义进行了简要说明，结构逻辑严密。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了学校，还结合了位次差逻辑和系统校验说明，并给出了基于职业兴趣和预算的填报建议。"
+        }
+      }
+    },
+    {
+      "id": "adv-phys-mid",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "所有院校、专业组及位次差数据均与工具结果完全一致，无编造信息。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了discoveries，明确了档次和地理位置，并点出因城市或校名易被忽略的价值。"
+        },
+        "rank_note": {
+          "score": 3,
+          "applicable": false,
+          "reason": "工具结果中未提供特定的rank_equivalent_note字段，此维度不适用。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "按冲刺、稳妥、保底三档清晰分类，并配有表格，结构逻辑严密。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了学校，还给出了志愿填报的梯度建议及后续咨询引导，具有较强的可执行性。"
+        }
+      }
+    },
+    {
+      "id": "adv-phys-low",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复中提到的所有学校、专业组、位次差及档位分类均与工具结果完全一致，无任何编造或矛盾信息。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了石河子大学、天津中医药大学和湘潭大学，明确了其双一流/211档次，并点出因地理位置易被忽略的价值。"
+        },
+        "rank_note": {
+          "score": 3,
+          "applicable": false,
+          "reason": "背景事实中未提供需要转述的特定位次换算说明或降级提示。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复清晰地按冲刺、稳妥、保底三档组织内容，并对每档的填报策略给出了简要说明，结构逻辑清晰。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了学校，还给出了各档次的填报逻辑（如保底用于降低滑档风险），并提供了后续查询专业设置的建议，具有可执行性。"
+        }
+      }
+    },
+    {
+      "id": "adv-phys-med",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "所有提到的学校、专业组、位次差及档位均与工具结果完全一致，无编造信息。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了discoveries，明确了学校层次，并解释了因城市因素易被忽略的价值。"
+        },
+        "rank_note": {
+          "score": 3,
+          "applicable": false,
+          "reason": "工具结果中未包含需要转述的rank_equivalent_note。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "按冲刺、稳妥、保底三档清晰分类，并对各档含义进行了简要说明，结构逻辑严密。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了数据，还解释了位次差含义，并给出了基于个人兴趣和城市偏好的决策建议。"
+        }
+      }
+    },
+    {
+      "id": "adv-hist-top",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "所有学校、专业组、位次差及档位信息均与工具结果完全一致，无编造或矛盾信息。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了华东师范大学和中国政法大学，明确了其985/211档次及地理位置优势，符合背景要求。"
+        },
+        "rank_note": {
+          "score": 3,
+          "applicable": false,
+          "reason": "工具结果中未包含需要转述的rank_equivalent_note信息。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复按冲刺、稳妥、保底三档清晰组织，并使用表格呈现，结构逻辑严密。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了学校，还解释了位次差含义，并给出了深入对比专业特色及录取规则的后续建议，实用性强。"
+        }
+      }
+    },
+    {
+      "id": "adv-hist-mid",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复中提到的所有院校、专业组、位次差及层次信息均与工具结果完全一致，无编造或矛盾之处。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了discoveries，明确了层次，并解释了因地理位置或校名原因容易被忽略的价值。"
+        },
+        "rank_note": {
+          "score": 5,
+          "applicable": true,
+          "reason": "针对石河子大学的位次折算说明，回复在脚注中进行了明确转述，提示了数据仅供参考。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复按冲刺、稳妥、保底三个梯度组织，结构清晰，且包含信息差发现板块，逻辑分明。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了学校，还提供了后续查询专业设置和录取数据的具体操作建议，具有较强的可执行性。"
+        }
+      }
+    },
+    {
+      "id": "adv-hist-low",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复中提到的所有学校、专业组、位次差数据均与工具结果完全一致，无编造信息。"
+        },
+        "discovery_value": {
+          "score": 3,
+          "applicable": false,
+          "reason": "工具结果中的discoveries字段为空，该维度不适用。"
+        },
+        "rank_note": {
+          "score": 3,
+          "applicable": false,
+          "reason": "工具结果中未包含特定候选的rank_equivalent_note，该维度不适用。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复通过表格清晰地按冲刺、稳妥、保底三档展示了院校信息，结构逻辑清晰。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复不仅罗列了数据，还解释了位次差含义，并给出了关于平行志愿和专业调剂的风险提示，具有实际参考价值。"
+        }
+      }
+    },
+    {
+      "id": "adv-phys-budget",
+      "error": null,
+      "scores": {
+        "grounded": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复中提到的所有院校、专业组及位次差数据均与工具结果完全一致，无编造信息。"
+        },
+        "discovery_value": {
+          "score": 5,
+          "applicable": true,
+          "reason": "单独成段介绍了发现的学校，明确了985/211/双一流档次，并解释了因地域等因素易被忽视的价值。"
+        },
+        "rank_note": {
+          "score": 3,
+          "applicable": false,
+          "reason": "工具结果中未包含需要转述的rank_equivalent_note字段。"
+        },
+        "structure": {
+          "score": 5,
+          "applicable": true,
+          "reason": "回复严格按照冲刺、稳妥、保底三档进行分类，结构清晰，便于考生理解各档次的定位。"
+        },
+        "helpful": {
+          "score": 5,
+          "applicable": true,
+          "reason": "不仅罗列了学校，还对冲刺阶段的风险进行了提示，并给出了结合职业规划和地域偏好的后续建议。"
+        }
+      }
+    }
+  ],
+  "judge_model": "gemini-3.1-flash-lite"
+}

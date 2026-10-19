@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>志愿领航 · 高考志愿规划 Agent</title>
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">志</span>
+      <div>
+        <h1>志愿领航 Agent</h1>
+        <div class="tag">高考志愿对话式规划 · 已接入真实后端</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="pill" id="statusPill">● 未开始</span>
+      <span class="pill" id="backendPill">检查后端…</span>
+      <span class="pill" id="userPill" style="display:none;"></span>
+      <button class="btn btn-outline btn-sm" id="logoutBtn" style="display:none;">退出登录</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="authOverlay" style="max-width:420px;">
+  <section class="hero" style="padding-top:36px;">
+    <span class="eyebrow">先登录 / 注册</span>
+    <h2>你的志愿规划记录只属于你自己</h2>
+    <p class="sub">登录后，对话记录和方案会跟你的账号绑定，其他人看不到、也改不了。</p>
+  </section>
+
+  <div class="panel" style="padding:24px;">
+    <div class="toggle-row" style="margin-bottom:16px;">
+      <div class="seg" id="authModeSeg">
+        <button class="active" data-mode="login">登录</button>
+        <button data-mode="register">注册</button>
+      </div>
+    </div>
+
+    <form id="authForm">
+      <div class="chat-input-row" style="flex-direction:column;align-items:stretch;gap:10px;">
+        <input type="email" id="authEmail" placeholder="邮箱" required
+               style="border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.8px;">
+        <input type="password" id="authPassword" placeholder="密码（至少8位）" required minlength="8"
+               style="border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.8px;">
+      </div>
+      <div id="authError" class="conflict-box" style="display:none;margin-top:12px;"></div>
+      <div class="confirm-row" style="margin-top:16px;">
+        <button type="submit" class="btn btn-primary" id="authSubmitBtn" style="width:100%;">登录</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="appContent" style="display:none;">
+
+<div class="disclaimer-bar">
+  <div class="wrap">
+    <b>提示：</b>本工具给出的录取概率、院校推荐均由算法与 AI 辅助生成，仅供参考，不构成录取承诺。
+    数据可能与最新情况存在差异，正式填报志愿前，请以你所在省级教育考试院和目标院校官方发布的招生信息为准，
+    并结合自身实际情况独立判断，重大决策建议同时咨询学校老师或专业机构。
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">对话连接真实后端</span>
+    <h2>把"分数"变成一份可核对、可调整的志愿方案</h2>
+    <p class="sub">左侧对话由服务器端 Gemini 处理并落库，右侧同步显示服务器返回的真实条件与候选数据——不是浏览器里写死的示例。</p>
+  </section>
+
+  <section id="stepConverse">
+    <div class="section-head">
+      <h3>对话建立用户条件</h3>
+      <p>说明背景和目标，缺失或冲突的条件会被逐项追问</p>
+    </div>
+
+    <div class="panel split">
+      <div class="chat-pane">
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input-row">
+          <textarea id="chatInput" placeholder="例如：我是江苏物理类考生，637分，位次5200，选科物理+化学，想找计算机相关专业……" rows="2"></textarea>
+          <button class="btn btn-primary" id="sendBtn">发送</button>
+        </div>
+        <div class="quick-row">
+          <button class="btn btn-outline btn-sm" id="fillDemoBtn">示例：江苏物理类考生（一次说全）</button>
+          <button class="btn btn-outline btn-sm" id="resetBtn">重新开始（清空本地会话）</button>
+        </div>
+      </div>
+
+      <div class="sync-pane">
+        <span class="sync-tag"><span class="dot"></span>后端返回的真实条件</span>
+        <h4>当前条件（profile_id: <span id="profileIdLabel">未开始</span>）</h4>
+
+        <div id="missingBox" class="missing-box" style="display:none;">
+          <b>还缺少这些信息</b>
+          <span id="missingText"></span>
+        </div>
+        <div id="conflictBox" class="conflict-box" style="display:none;">
+          <b>发现条件冲突</b>
+          <span id="conflictText"></span>
+        </div>
+
+        <div class="field-list" id="fieldList"></div>
+
+        <label class="home-province-toggle">
+          <input type="checkbox" id="homeProvinceOnlyChk">
+          只看省内院校（按学校实际所在地过滤，跟"招生目标省份"是两回事，
+          比如外省院校面向本省招生的计划会被这个开关排除）
+        </label>
+
+        <label class="home-province-toggle">
+          <input type="checkbox" id="acceptSinoForeignChk">
+          接受中外合作办学项目（这类项目学费通常显著更高，默认不勾选，即不推荐）
+        </label>
+
+        <label class="home-province-toggle">
+          <input type="checkbox" id="acceptSpecialProgramChk">
+          接受专项计划/定向培养类型（国家专项、地方专项、公费师范生定向等，
+          通常有户籍/服务期限制，默认不勾选，即不推荐）
+        </label>
+
+        <div class="sync-actions">
+          <button class="btn btn-red btn-sm" id="searchBtn" disabled>查询候选</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stepCandidates" style="display:none;">
+    <div class="section-head">
+      <h3>候选与方案</h3>
+      <p>保底/稳妥/冲刺各精选几所好学校优先展示，勾选想放进方案的候选，然后点击"确认方案"</p>
+    </div>
+
+    <div class="toggle-row">
+      <span class="sample-badge" id="candCountBadge"></span>
+    </div>
+
+    <div id="discoveriesSection" style="display:none;"></div>
+
+    <div id="curatedGroups"></div>
+
+    <div class="collapsed-section">
+      <button class="btn btn-outline btn-sm" id="toggleCollapsedBtn"></button>
+      <div class="cand-grid" id="collapsedGrid" style="display:none;"></div>
+    </div>
+
+    <div class="confirm-row">
+      <button class="btn btn-primary" id="confirmPlanBtn" disabled>确认方案（0）</button>
+    </div>
+  </section>
+
+  <section id="stepRules" style="display:none;">
+    <div class="section-head">
+      <h3>资格校验</h3>
+      <p>想看"每条候选具体因为哪条规则通过/没通过"这类核验细节，可以在这里展开——
+        默认收起，日常报考不需要逐条翻这份原始核验记录，上面的精选候选已经是筛选过的结果</p>
+    </div>
+    <button class="btn btn-outline btn-sm" id="toggleRuleAuditBtn">展开资格核验详情</button>
+    <div class="rule-list" id="ruleList" style="display:none;"></div>
+  </section>
+
+  <section id="stepPlan" style="display:none;">
+    <div class="section-head">
+      <h3>方案版本</h3>
+      <p>服务器重新计算过的最终数字，不是浏览器里传上去的</p>
+    </div>
+
+    <div class="plan-wrap">
+      <div class="panel" style="padding:20px;">
+        <div class="version-row">
+          <span id="versionLabel"></span>
+          <a class="btn btn-outline btn-sm" id="exportLink" target="_blank" rel="noopener">导出方案</a>
+        </div>
+        <div id="planCandList"></div>
+      </div>
+
+      <div class="panel" style="padding:20px;">
+        <h4 style="margin:0 0 12px;font-size:15px;">与上一版本相比</h4>
+        <div id="diffArea"></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div><!-- /#appContent -->
+
+<footer>
+  <div class="wrap">
+    <span>志愿领航 Agent · 前后端分离版本 —— 所有数据来自真实后端接口，种子数据仍为示例数据，正式使用前需接入官方数据源。本工具提供的所有建议仅供参考，不构成任何形式的录取保证，最终填报决策请以官方信息为准并自行承担。</span>
+    <span id="apiBaseLabel"></span>
+  </div>
+</footer>
+
+<script type="module" src="src/config.js"></script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

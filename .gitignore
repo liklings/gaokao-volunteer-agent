@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+*.log
+node_modules/
+dist/
+.DS_Store
+
+backend/tests/eval/rag/.cache/
+
+# 评测的 Gemini 响应缓存（体积大、会随提示词变化，不进仓库）
+backend/tests/eval/**/.cache/
+
+# 开源前补充
+backend/.env
+*.egg-info/
+.idea/
+政策原文-已转换/
+Claude outputs/
+
+# 不上传任何原始文档（政策原文、Word、Excel、PDF）
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.pdf
+backend/tests/eval/rag/corpus/
+
+# 录制原始素材（体积大，不进仓库）
+docs/assets/_raw/

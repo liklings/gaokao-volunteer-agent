@@ -1,0 +1,28 @@
+{
+  "skills": [
+    {
+      "id": "special_program",
+      "title": "专项计划（国家/高校/地方）",
+      "summary": "国家专项、高校专项、地方专项三类专项计划的报考资格、批次位置、跟普通批的关系，以及常见的误解。",
+      "file": "special_program.md"
+    },
+    {
+      "id": "parallel_choice",
+      "title": "平行志愿投档规则",
+      "summary": "平行志愿'一分一段、位次优先、遵循志愿、一轮投档'的运行机制，以及'冲稳保'志愿梯度该怎么排的实践建议。",
+      "file": "parallel_choice.md"
+    },
+    {
+      "id": "collected_volunteer",
+      "title": "征集志愿（补录）",
+      "summary": "什么情况下会出现征集志愿、什么人可以填、跟正常批次志愿的时间差和风险点。",
+      "file": "collected_volunteer.md"
+    },
+    {
+      "id": "adjustment",
+      "title": "专业调剂",
+      "summary": "'服从专业调剂'这个选项到底在赌什么、不服从调剂可能被退档的机制，以及怎么权衡要不要勾选。",
+      "file": "adjustment.md"
+    }
+  ]
+}
